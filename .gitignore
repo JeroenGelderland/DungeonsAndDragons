@@ -106,3 +106,4 @@ dist
 # file: ~/.gitignore_global
 .DS_Store
 .idea
+package-lock.json

@@ -1,0 +1,24 @@
+{
+  "name": "dungeonsanddragons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeroenGelderland/DungeonsAndDragons.git"
+  },
+  "author": "Gust en Jeroen xo xo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeroenGelderland/DungeonsAndDragons/issues"
+  },
+  "homepage": "https://github.com/JeroenGelderland/DungeonsAndDragons#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

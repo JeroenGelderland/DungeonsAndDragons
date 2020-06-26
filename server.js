@@ -1,3 +1,5 @@
+const {Database} = require("./Utils/Database");
+
 const EXPRESS = require("express")
 const HTTP = require('http')
 const PORT = 3000
@@ -8,16 +10,23 @@ const SERVER = HTTP.createServer(APP)
 const IO = SOCKETIO.listen(SERVER)
 
 
-APP.use(EXPRESS.static('public'))
+Database.getUserByName("test")
+
+APP.use(EXPRESS.static('Public'))
 
 APP.get('/', (req, res) => res.sendFile("portal.html", { root: __dirname }))
 
-
-
 SERVER.listen(PORT, () => {
+
     IO.on('connection', SOCKET => {
-        SOCKET.on('helloworld', e => {
-            console.log(e)
+
+        SOCKET.on('user-connected', e =>{
+
+            console.log("user joined")
+        })
+
+        SOCKET.on('disconnect', e => {
+            console.log("user disconnnected")
         })
     })
     console.log(`listening at http://localhost:${PORT}`)

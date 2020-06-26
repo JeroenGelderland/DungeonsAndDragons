@@ -1,5 +1,3 @@
-const {Database} = require("./Utils/Database");
-
 const EXPRESS = require("express")
 const HTTP = require('http')
 const PORT = 3000
@@ -9,8 +7,7 @@ const APP = EXPRESS()
 const SERVER = HTTP.createServer(APP)
 const IO = SOCKETIO.listen(SERVER)
 
-
-Database.getUserByName("test")
+const {UserController} = require("./Controller/UserController")
 
 APP.use(EXPRESS.static('Public'))
 
@@ -24,6 +21,10 @@ SERVER.listen(PORT, () => {
 
             console.log("user joined")
         })
+
+        SOCKET.on('login', function (name) {
+            UserController.login(name)
+        } )
 
         SOCKET.on('disconnect', e => {
             console.log("user disconnnected")

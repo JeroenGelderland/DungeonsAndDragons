@@ -1,32 +1,41 @@
-export default class UserController {
+const DATA = require("../Utils/database.json")
+
+class UserController {
 
     //display
 
-    list(){}
+    static list(){}
 
-    show(id){}
+    static show(id){}
 
     //creators
 
-    create(){}
+    static create(){}
 
-    edit(id){}
+    static edit(id){}
 
-    delete(id){}
+    static delete(id){}
 
     //writers
 
-    store(){}
+    static store(){}
 
-    update(id){}
+    static update(id){}
 
-    persist(id){}
+    static persist(id){}
 
     //actions
 
-    login(name, password){
-        
+    static login(name){
+        let user = DATA.users.find(user => user.naam == name)
+        if(user){
+            sessionStorage.setItem("user", user)
+            return true;
+        }
+        return false;
     }
+}
 
-
+module.exports = {
+    UserController
 }

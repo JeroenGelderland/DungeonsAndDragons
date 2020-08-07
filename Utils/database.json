@@ -1,10 +1,21 @@
 {
-  "test" : 1,
-  "users" : [
+  "games" : [
     {
-      "naam": "test",
-      "rang": 0,
-      "pass": "test"
+      "naam" : "Ivo's sicke game",
+      "users": [
+        {"naam" : "Pim"},
+        {"naam" : "Pam"},
+        {"naam" : "Pet"}
+      ]
+    },
+
+    {
+      "naam" : "Gust's sicke game",
+      "users": [
+        {"naam" : "Pim"},
+        {"naam" : "Pam"},
+        {"naam" : "Pet"}
+      ]
     }
   ]
 }

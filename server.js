@@ -2,12 +2,19 @@ const EXPRESS = require("express")
 const HTTP = require('http')
 const PORT = 3000
 const SOCKETIO = require("socket.io")(PORT + 100)
+const FS = require('fs')
 
+const DATABASE_FILE = "./Utils/database.json"
 const APP = EXPRESS()
 const SERVER = HTTP.createServer(APP)
 const IO = SOCKETIO.listen(SERVER)
 
+const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
+const CURRENT = 
+
+
 const {UserController} = require("./Controller/UserController")
+const { Socket } = require("dgram")
 
 APP.use(EXPRESS.static('Public'))
 
@@ -18,16 +25,17 @@ SERVER.listen(PORT, () => {
     IO.on('connection', SOCKET => {
 
         SOCKET.on('user-connected', e =>{
-
-            console.log("user joined")
+            SOCKET.emit('init', DATA.games)
         })
-
-        SOCKET.on('login', function (name) {
-            UserController.login(name)
-        } )
 
         SOCKET.on('disconnect', e => {
             console.log("user disconnnected")
+        })
+
+        SOCKET.on('pick-game', choice => {
+            console.log(choice)
+
+
         })
     })
     console.log(`listening at http://localhost:${PORT}`)

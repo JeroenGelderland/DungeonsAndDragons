@@ -11,22 +11,55 @@
             "abilities": {
               "DEX": 1
             }
-          }
+        },
+        "F2B0": {
+            "name": "Pam",
+            "hp": {
+                "total": 100,
+                "current": 55
+            },
+            "items": {
+                "I-3D83": {
+                    "type": "weapon"
+                }
+            },
+            "state": {
+                "ARMOR_CLASS": 1,
+                "SAVING_THROWS": 4
+            }
+        },
+        "009E": {
+            "name": "Pet",
+            "hp": {
+                "total": 100,
+                "current": 0
+            },
+            "dst": {
+                "death": 2,
+                "live": 0
+            },
+            "items": []
         }
-      },
-      "state": {
-        "ARMOR_CLASS": 1,
-        "abilities": {
-          "DEX": 1
-        }
-      }
     },
-    "F2B0": {
-      "name": "Pam",
-      "hp": { "total": 100, "current": 55 },
-      "items": {
-        "I-3D83": {
-          "type": "weapon"
+    "games": {
+        "Ivo's sicke game": {
+            "users": [
+                "84AF",
+                "F2B0",
+                "009E"
+            ]
+        },
+        "Gust's sicke game": {
+            "users": [
+                "009E"
+            ]
+        },
+        "NIEUWE CAMPAIGN": {
+            "users": [
+                "EE2A",
+                "F2B0",
+                "009E"
+            ]
         }
       },
       "state": {
@@ -59,6 +92,6 @@
         "F2B0",
         "009E"
       ]
+
     }
-  }
 }

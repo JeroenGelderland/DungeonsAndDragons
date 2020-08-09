@@ -132,6 +132,7 @@ const createElement = (tagName, attributes, innerHTML, eventListener) => {
 document.addEventListener('click', e => { if (e.target.tagName === 'A') e.preventDefault() })
 
 SOCKET.on('init', everything => {
+    console.log(everything)
     const players = everything.players
     const GAMES = everything.games
 

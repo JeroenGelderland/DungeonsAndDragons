@@ -16,8 +16,6 @@ const { Socket } = require('dgram')
 
 const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
 
-const uuid = () => { let a,b;for(b=a='';b++<36;a+=~b%5|b*3&4?(b^15?8^Math.random()*(b^20?16:4):4).toString(16):'-');return a }
-
 APP.use(EXPRESS.static('Public'))
 
 APP.get('/', (req, res) => res.sendFile('index.html', { root: __dirname }))

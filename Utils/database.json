@@ -1,15 +1,28 @@
 {
-  "players": {
-    "84AF": {
-      "name": "Pim",
-      "hp": { "total": 100, "current": 55 },
-      "items": {
-        "I-026C": {
-          "type": "weapon",
-          "alterations": {
-            "ARMOR_CLASS": 1,
-            "abilities": {
-              "DEX": 1
+    "keys": [],
+    "players": {
+        "84AF": {
+            "name": "Pim",
+            "hp": {
+                "total": 100,
+                "current": 55
+            },
+            "items": {
+                "I-026C": {
+                    "type": "weapon",
+                    "alterations": {
+                        "ARMOR_CLASS": 1,
+                        "abilities": {
+                            "DEX": 1
+                        }
+                    }
+                }
+            },
+            "state": {
+                "ARMOR_CLASS": 1,
+                "abilities": {
+                    "DEX": 1
+                }
             }
         },
         "F2B0": {
@@ -43,55 +56,22 @@
     },
     "games": {
         "Ivo's sicke game": {
-            "users": [
+            "players": [
                 "84AF",
                 "F2B0",
                 "009E"
             ]
         },
-        "Gust's sicke game": {
-            "users": [
+        "Gust's áÄô sicke game": {
+            "players": [
                 "009E"
             ]
         },
         "NIEUWE CAMPAIGN": {
-            "users": [
-                "EE2A",
+            "players": [
                 "F2B0",
                 "009E"
             ]
         }
-      },
-      "state": {
-        "ARMOR_CLASS": 1,
-        "SAVING_THROWS": 4
-      }
-    },
-    "009E": {
-      "name": "Pet",
-      "hp": { "total": 100, "current": 0 },
-      "dst": { "death": 2, "live": 0 },
-      "items": []
-    }
-  },
-  "games": {
-    "Ivo's sicke game": {
-      "players": [
-        "84AF",
-        "F2B0",
-        "009E"
-      ]
-    },
-    "Gust's áÄô sicke game": {
-      "players": [
-        "009E"
-      ]
-    },
-    "NIEUWE CAMPAIGN": {
-      "players": [
-        "F2B0",
-        "009E"
-      ]
-
     }
 }

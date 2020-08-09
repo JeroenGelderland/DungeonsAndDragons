@@ -1,0 +1,48 @@
+@function gv ($name, $multiplier: 1) {
+  @if $multiplier != 1 {
+    $value: 'calc(var(--' + $name + ') * ' + $multiplier + ')';
+    $name: $name + if($multiplier < 0, '-n-', '-') + str-replace(abs($multiplier) + '', '.', '-');
+    $merge: ( #{$name}: $value );
+
+    @if global-variable-exists(globals) {
+      @if not map-get($globals, $name) {
+        $globals: map-merge($globals, $merge) !global;
+      }
+    } @else {
+      $globals: $merge !global;
+    }
+  }
+  @return #{'var(--' + $name + ')'};
+}
+
+@function lv ($name, $multiplier: 1) {
+  @if $multiplier != 1 {
+    $value: 'calc(var(--' + $name + ') * ' + $multiplier + ')';
+    $name: $name + if($multiplier < 0, '-n-', '-') + str-replace(abs($multiplier) + '', '.', '-');
+    $merge: ( ( #{& + '-' + $name}: ( &, #{$name}, $value ) ) );
+
+    @if global-variable-exists(locals) {
+      @if not map-get($locals, $name) {
+        $locals: map-merge($locals, $merge) !global;
+      }
+    } @else {
+      $locals: $merge !global;
+    }
+  }
+  @return #{'var(--' + $name + ')'};
+}
+
+@mixin flush-variables () {
+  @if global-variable-exists(globals) {
+    @at-root :root {
+      @each $name, $value in $globals {
+        --#{$name}: #{$value};
+      }
+    }
+  }
+  @if global-variable-exists(locals) {
+    @each $name, $set in $locals {
+      @at-root #{nth($set, 1)} { --#{nth($set, 2)}: #{nth($set, 3)}; }
+    }
+  }
+}

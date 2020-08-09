@@ -1,0 +1,47 @@
+#phone,
+#mail-mask path,
+#cart {
+  stroke-linecap:  round;
+  stroke-linejoin: round;
+}
+
+#cart {
+  color: #FFF;
+  fill:   currentColor;
+  stroke: currentColor;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: hsl(210, 34%, 30%);
+  fill: currentColor;
+  
+           svg { height: 1em; }
+  &.size-2 svg { height: 1.25em; }
+  &.size-3 svg { height: 1.5em; }
+
+  &.mono use { --mono-fill: currentColor !important; }
+
+  @at-root span#{&} {
+    display: inline-block;
+
+    &:not(.first) { margin-inline-start: .4em }
+    &:not(.last)  { margin-inline-end:   .4em }
+  }
+
+  &.star {
+    color: $color-brand;
+    font-size: 1em / 14 * 20;
+
+    + .star {
+      margin-inline-start: -.3em;
+    }
+    
+    use { stroke: currentColor }
+  }
+
+  &.check, &.info, &.phone, &.mail {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

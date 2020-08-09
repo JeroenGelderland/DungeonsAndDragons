@@ -1,0 +1,30 @@
+.close {
+  &:not(.float) {
+    position: absolute;
+  }
+  &.float.right {
+    float:right
+  }
+  &.float.left {
+    float:left
+  }
+
+  width:  calc(10px + 2em);
+  height: calc(10px + 2em);
+  margin: calc(-5px - .6em);
+  border-radius: 50%;
+  z-index: 1;
+
+  &::before, &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    height: 1em;
+    border-right: 2px solid;
+  }
+
+  &::before { transform: translate(-50%, -50%) rotate(-45deg); }
+  &::after  { transform: translate(-50%, -50%) rotate( 45deg); }
+}

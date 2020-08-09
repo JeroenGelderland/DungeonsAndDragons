@@ -20,7 +20,7 @@ const uuid = () => { let a,b;for(b=a='';b++<36;a+=~b%5|b*3&4?(b^15?8^Math.random
 
 APP.use(EXPRESS.static('Public'))
 
-APP.get('/', (req, res) => res.sendFile('portal.html', { root: __dirname }))
+APP.get('/', (req, res) => res.sendFile('index.html', { root: __dirname }))
 
 SERVER.listen(PORT, () => {
 

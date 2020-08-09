@@ -1,0 +1,62 @@
+@function to-string ($list, $glue: '', $is-nested: false) {
+  $result: null;
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    } @else {
+      $result: if(
+        $i != length($list) or $is-nested,
+        $result#{$e}#{$glue},
+        $result#{$e}
+      );
+    }
+  }
+  @return $result;
+}
+
+@mixin fv ($queries, $property: '--fv') {
+  $length: length($queries);
+  @if $length == 1 {
+    #{$property}: nth(nth($queries, 1), 2);
+  } @else {
+    @for $i from 1 through $length {
+      $currentQuery:      nth($queries, $i);
+      $currentBreakpoint: nth($currentQuery, 1);
+      $currentValues:     nth($currentQuery, 2);
+      @if $i == 1 {
+        @media(max-width: $currentBreakpoint) {
+          #{$property}: to-string($currentValues, ' ');
+        }
+      } @else {
+        $previousQuery:      nth($queries, $i - 1);
+        $previousBreakpoint: nth($previousQuery, 1);
+        $previousValues:     nth($previousQuery, 2);
+        $result: ();
+        @for $e from 1 through length($currentValues) {
+          $currentValue:  nth($currentValues,  $e);
+          $previousValue: nth($previousValues, $e);
+          @if $currentValue == $previousValue {
+            $result: append($result, $currentValue);
+          } @else {
+            $vw: round(($currentValue - $previousValue) / ($currentBreakpoint - $previousBreakpoint) * 10000000) / 100000;
+            $px: $previousValue - (round($previousBreakpoint * $vw / 10) / 10);
+            @if $px == 0 {
+              $result: append($result, #{$vw}vw);
+            } @else {
+              $result: append($result, calc(#{$vw}vw #{if($px < 0, '-', '+') abs($px)}));
+            }
+          }
+        }
+        @media(min-width: $previousBreakpoint + 1px) and (max-width: $currentBreakpoint) {
+          #{$property}: to-string($result, ' ');
+        }
+        @if $i == $length {
+          @media(min-width: $currentBreakpoint + 1px) {
+            #{$property}: to-string($currentValues, ' ');
+          }
+        }
+      }
+    }
+  }
+}

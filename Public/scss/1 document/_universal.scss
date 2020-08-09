@@ -1,0 +1,69 @@
+//// Fixed elements
+  //
+  .fixed {
+    position: fixed;
+    width:  100%;
+    height: 100vh;
+    perspective: 800px;
+          pointer-events: none;
+    > * { pointer-events: initial; }
+    z-index: 999;
+  }
+
+//// The root SVG element
+  // Don't set display: none;      - Animations won't work. See https://bugs.chromium.org/p/chromium/issues/detail?id=258029
+  // Don't set visibility: hidden; - Masks won't work
+  // 
+  #SVGdefinitions {
+    position: fixed;
+    bottom: 100vh;
+    right:  100vw;
+    overflow: hidden !important;
+  }
+
+//// Visually hidden elements
+  // Both these classes hide elements from sighted users, while still being visible to screen readers
+  // Radio buttons and checkboxes have these exact styles applied to them as well
+  // The 'visible-on-focus' class only shows up when it is being focussed
+  //
+  .invisible,
+  html.js .invisible-with-js,
+  html.no-js .visible-with-js,
+  html:not(.js-focus-visible) .visible-on-focus:not(:focus),
+  html.js-focus-visible .visible-on-focus:not(.focus-visible) {
+    position: absolute;
+    top:    auto !important;
+    right:  200vw;
+    bottom: auto !important;
+    width:  1px;
+    height: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+  }
+
+//// General queries
+  //
+  @media                         (max-width:  768px) { .tablet, .desktop { &:not(.mobile)  { display: none !important } } }
+  @media (min-width:  769px) and (max-width: 1024px) { .mobile, .desktop { &:not(.tablet)  { display: none !important } } }
+  @media (min-width: 1025px)                         { .mobile, .tablet  { &:not(.desktop) { display: none !important } } }
+
+//// Text
+  //
+  .text-left   { text-align: left }
+  .text-center { text-align: center }
+  .text-right  { text-align: right }
+
+  .text-nowrap { white-space: nowrap }
+
+  .spell-out { speak-as: spell-out }
+
+//// Alignment
+  //
+  .align-left,
+  .align-center,
+  .align-right  { display: block }
+  .align-left   { margin-right: auto; align-self: flex-start !important }
+  .align-center { margin:       auto; align-self: center     !important }
+  .align-right  { margin-left:  auto; align-self: flex-end   !important }

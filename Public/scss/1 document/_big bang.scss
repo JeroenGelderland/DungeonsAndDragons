@@ -1,0 +1,39 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  position: relative;
+  border: 0 solid;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+audio,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,img,main,menu,nav,section,svg,video{display:block}
+input[type="checkbox"],input[type="radio"]{position:absolute;top:auto!important;right:200vw;bottom:auto!important;width:1px;height:1px;clip:rect(1px,1px,1px,1px);clip-path:inset(50%)}
+script,style,template{display:none!important}
+html{overflow-x:hidden;overflow-y:scroll;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-overflow-scrolling:touch;-webkit-font-smoothing:antialiased}
+body{overflow:hidden;min-height:100vh;width:100%;margin:0}
+html.noScroll body{position:fixed}
+html:not(.noScroll) body{top:auto!important}
+h1,h2,h3,h4,h5,h6,blockquote,pre,img,tr{page-break-inside:avoid}
+h1,h2,h3,h4,h5,h6{page-break-after:avoid}
+h2{page-break-before:always}
+p{orphans:2;widows:2}
+a{background-color:transparent;-webkit-text-decoration-skip:objects}
+b,strong{font-weight:bolder}
+sub,sup{font-size:.75em;line-height:0}
+sub{bottom:-.25em}
+sup{top:-.5em}
+small{font-size:.8em}
+ul,ol,dl{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+thead{display:table-header-group}
+blockquote,q{quotes:none}
+blockquote::before,blockquote::after,q::before,q::after{content:none}
+hr{height:0;overflow:visible}
+cite{font-style:normal}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+dfn{font-style:italic}
+mark{background-color:#FF0;color:#000}
+svg{min-width:0;min-height:0;overflow:visible}
+fieldset{border-width:1px;padding:1em}
+legend{color:inherit;display:table;max-width:100%;white-space:normal}
+summary{display:list-item}

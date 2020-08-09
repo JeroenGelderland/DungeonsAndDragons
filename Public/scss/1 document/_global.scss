@@ -1,0 +1,226 @@
+//// Available variables
+  //
+  // #{$not-text-block-elements}
+  // #{$text-block-elements}
+  // #{$headings}
+  // #{$body-headings}
+  // #{$all-headings}
+  //
+
+//// Default styles
+  // Mainly text-related
+  //
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-body;
+  }
+
+  #{$headings} {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.125;
+
+    + * {
+      margin-top: gv(rg);
+    }
+
+    span {
+      color: var(--th-500);
+    }
+  }
+
+  #{$text-block-elements} {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: gv(rg);
+    }
+
+    &:empty { // If you're going to use a block-level element and plan to leave it empty, use a div instead.
+      display: none !important;
+    }
+  }
+
+  h1 {
+    @include fv((
+       375px: 32px,
+      1440px: 48px
+    ), 'font-size');
+    padding-bottom: .25em;
+    margin: calc(-1.1em / 6) 0;
+  }
+
+  h2 {
+    @include fv((
+       375px: 24px,
+      1440px: 32px
+    ), 'font-size');
+  }
+
+  h3 {
+    @include fv((
+       375px: 20px,
+      1440px: 24px
+    ), 'font-size');
+  }
+
+  h4 {
+    @include fv((
+       375px: 18px,
+      1440px: 20px
+    ), 'font-size');
+  }
+
+//// Default list-styles
+  //
+  body > main {
+    ul, ol, dl {
+      margin-bottom: 0;
+    }
+
+    ul, ol {
+      padding: 0;
+
+      &:not(.noStyles) {
+        list-style: none;
+      }
+    }
+
+    ul:not(.noStyles) {
+      > li {
+        padding-left: 2.5em;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: .8em;
+          left: .87em;
+          width:  6px;
+          height: 6px;
+          background-color: currentColor;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+        }
+      }
+    }
+
+    ol:not(.noStyles) {
+      counter-reset: ol;
+
+      > li {
+        &::before {
+          justify-self: end;
+          counter-increment: ol;
+          content: counters(ol, '.') '.';
+          font-variant-numeric: tabular-nums;
+        }
+        &:empty::after {
+          content: '';
+        }
+      }
+
+      @supports (display: contents) and (caret-color: #000) {
+        display: grid;
+        grid-column-gap: gv(cg);
+        grid-template-columns: minmax(calc(1.3434ex * 2 + .5611ex), max-content) auto; // min value is roughly 2 numbers and a period
+
+        > li {
+          display: contents;
+        }
+      }
+    }
+  }
+
+//// Logo styling
+  //
+  .logo {
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .logo svg use {
+    fill: hsl(38, 100%, 56%);
+  }
+
+  .logo span {
+    color: hsl(38, 100%, 56%);
+  }
+
+  .logo svg {
+    width: 48px;
+  }
+
+//// Backgrounds
+  .bg-image {
+    background-size: 0;
+  }
+  .bg-image::before {
+    background-size: cover;
+    background-image: inherit;
+  }
+
+  #{$bg} {
+    padding: gv(rg) gv(cg);
+    border-radius: gv(border-radius);
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      max-width:  100%;
+      max-height: 100%;
+      margin: auto;
+      z-index: -1;
+      border-radius: inherit;
+
+      body > main > div > & {
+        max-width: 2048px; // 2560 zou ook kunnen
+      }
+    }
+
+    @at-root #{selector-unify('table',       &)} { &::before {
+      top:    calc(#{gv(rg, -1)} + #{gv(border-radius, -1)});
+      left:   calc(#{gv(cg, -1)} + #{gv(border-radius, -1)});
+      right:  calc(#{gv(cg, -1)} + #{gv(border-radius, -1)});
+      bottom: calc(#{gv(rg, -1)} + #{gv(border-radius, -1)});
+    }}
+
+    @at-root #{selector-unify(':not(table)', &)} { &::before {
+      top:    gv(border-radius, -1);
+      left:   gv(border-radius, -1);
+      right:  gv(border-radius, -1);
+      bottom: gv(border-radius, -1);
+    }}
+  }
+
+  .bg-main-light { &::before { background-color: hsl( 210,  36%, 96%) }
+    #{$headings}, th, .icon { color: hsl(210, 39%, 23%) }
+    hr                      { color: hsl(210, 23%, 60%) }
+  }
+  .bg-orange     { &::before { background-color: hsl(  39, 100%, 86%) }
+    #{$headings}, th, .icon { color: hsl(38, 100%, 16%) }
+    hr                      { color: hsl(38, 100%, 56%) }
+  }
+  .bg-blue       { &::before { background-color: hsl( 200,  92%, 95%) }
+    #{$headings}, th, .icon { color: hsl(200, 92%, 22%) }
+    hr                      { color: hsl(200, 92%, 63%) }
+  }
+  .bg-overlay    { &::before { background-color: hsla(210,  34%, 30%, .25) }
+    color: #FFF;
+  }
+  .bg-image      {
+    color: #FFF;
+  }
+
+//// Others
+  //
+  .flex-nowrap {
+    display: flex;
+    align-items: center;
+  }

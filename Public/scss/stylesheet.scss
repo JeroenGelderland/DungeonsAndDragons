@@ -1,0 +1,111 @@
+//// Helpers
+  @import '_helpers/math';
+  @import '_helpers/str';
+
+//// Generators
+  @import '_generators/fluid values';
+  @import '_generators/variables';
+
+//// Global variables
+  //
+  $white: hsl(190,40%,100%);
+  $m-100: hsl(201,25%,96%);
+  $m-200: hsl(206,18%,89%);
+  $m-300: hsl(208,15%,79%);
+  $m-400: hsl(209,14%,66%);
+  $m-500: hsl(210,14%,53%);
+  $m-600: hsl(210,15%,43%);
+  $m-700: hsl(211,17%,32%);
+  $m-800: hsl(211,20%,23%);
+  $m-900: hsl(211,24%,14%);
+  $black: hsl(211,30%,5%);
+
+  :root {
+    --border-radius: 5px;
+
+    @include fv((
+       375px: 40px,
+      1024px: 80px,
+      1440px: 120px
+    ), '--sp');
+
+    @include fv((
+       375px: 40px,
+      1024px: 80px
+    ), '--bs');
+
+    --cg: 24px;
+    --rg: 1.5rem;
+  }
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  position: relative;
+  border-width: 0;
+  border-style: solid;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+section {
+  position: fixed;
+  top:    0;
+  left:   0;
+  right:  0;
+  bottom: 0;
+
+  &:not(.active),
+  &.active ~ .active {
+    display: none;
+  }
+}
+
+#lobby {
+  z-index: 1;
+  background-color: #FFF;
+  font-size: 2em;
+
+  > :not(.active),
+  > .active ~ .active {
+    display: none;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#gameList,
+#roleList {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: gv(rg, 0.5) gv(cg, 0.5);
+
+  &, > div {
+    display: flex;
+  }
+}
+
+a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  padding: .7em 1em .8em;
+  margin: gv(rg, 0.5) gv(cg, 0.5);
+  border-radius: .2em;
+  border-width: 1px;
+}
+
+//// Globals
+  // Variables accessed with the gv() function need to be created after the last call
+  //
+  @include flush-variables();

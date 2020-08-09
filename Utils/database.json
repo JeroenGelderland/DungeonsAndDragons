@@ -1,20 +1,25 @@
 {
   "games" : [
     {
-      "naam" : "Ivo's sicke game",
+      "name" : "Ivo's sicke game",
       "users": [
-        {"naam" : "Pim"},
-        {"naam" : "Pam"},
-        {"naam" : "Pet"}
+        {"name" : "Pim"},
+        {
+          "name": "Pam"},
+        {
+          "name": "Pet"}
       ]
     },
 
     {
-      "naam" : "Gust's sicke game",
+      "name": "Gust's sicke game",
       "users": [
-        {"naam" : "Pim"},
-        {"naam" : "Pam"},
-        {"naam" : "Pet"}
+        {
+          "name": "Pim"},
+        {
+          "name": "Pam"},
+        {
+          "name": "Pet"}
       ]
     }
   ]

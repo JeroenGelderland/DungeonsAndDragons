@@ -23,20 +23,20 @@ SOCKET.on('init', games => {
 
     games.forEach(game => {
         gameListItem = document.createElement("li")
-        gameListItem.innerHTML = game.naam
+        gameListItem.innerHTML = game.name
         gameListItem.addEventListener("click", e => {
 
             document.querySelector("#pick_game").style.display = "none"
-            choice.game = game.naam
+            choice.game = game.name
 
             game.users.forEach(user => {
 
                 userListItem = document.createElement("li")
-                userListItem.innerHTML = user.naam
+                userListItem.innerHTML = user.name
                 userListItem.addEventListener("click", e => {
 
                     document.querySelector("#pick_user").style.display = "none"
-                    choice.user = user.naam
+                    choice.user = user.name
                     SOCKET.emit("pick-game", choice)
                 })
                 userList.appendChild(userListItem)

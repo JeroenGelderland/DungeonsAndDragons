@@ -11,10 +11,8 @@ const IO = SOCKETIO.listen(SERVER)
 
 
 const { Socket } = require("dgram")
-const {GameHandler} = require("./Handlers/GameHandler")
 
 const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
-const GAME_HANDLER = new GameHandler();
 
 
 APP.use(EXPRESS.static('Public'))
@@ -34,10 +32,8 @@ SERVER.listen(PORT, () => {
         })
 
         SOCKET.on('pick-game', choice => {
-
+            
             console.log(choice)
-            GAME_HANDLER.addUserToGame(SOCKET.id ,choice.user, choice.game)
-            console.log(GAME_HANDLER.games[0].users)
         })
     })
     console.log(`listening at http://localhost:${PORT}`)

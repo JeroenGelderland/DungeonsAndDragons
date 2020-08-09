@@ -1,3 +1,5 @@
+const {Database} = require("./Utils/Database");
+
 const EXPRESS       = require('express')
 const HTTP          = require('http')
 const PORT          = 3000
@@ -25,6 +27,8 @@ SERVER.listen(PORT, () => {
     IO.on('connection', SOCKET => {
 
         SOCKET.on('user-connected', e => {
+            let test = new Database();
+            test.backUpStorage();
             SOCKET.emit('init', DATA)
         })
 

@@ -7,6 +7,10 @@ class  Database {
         this.storage = JSON.parse(FS.readFileSync(DATABASE_FILE))
     }
 
+    GetData(){
+        return this.storage;
+    }
+
     generateUniqueKey(){
         let key
         do key = (l = 4) => ('0'.repeat(l) + Math.floor(Math.random() * Math.pow(36, l)).toString(36)).slice(-l)

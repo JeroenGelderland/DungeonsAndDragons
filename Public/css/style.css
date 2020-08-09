@@ -1,12 +1,12 @@
-*{
+*, ::before, ::after {
     box-sizing: border-box;
     position: relative;
 }
 
-body{
+body {
     margin: 0;
 }
 
-ul{
+ul {
     list-style: none;
 }

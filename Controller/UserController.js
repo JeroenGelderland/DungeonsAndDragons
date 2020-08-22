@@ -1,33 +1,49 @@
-const DATA = require("../Utils/database.json")
-
 class UserController {
+
+
+    constructor(database) {
+        this.database = database
+
+    }
 
     //display
 
-    static list(){}
+    list(){
+        this.show("84AF")
+        this.create("pietje", 100)
+        return this.database.GetData().players
 
-    static show(id){}
+    }
 
-    //creators
-
-    static create(){}
-
-    static edit(id){}
-
-    static delete(id){}
+    show(id){
+        return this.database.GetData().players[id]
+    }
 
     //writers
 
-    static store(){}
+     create(obj){
 
-    static update(id){}
+        const hpObj = {total : hp, current : hp}
 
-    static persist(id){}
+        const player = {
+            name : name,
+            hp : hpObj,
+            items : {}
+        }
+        this.database.AddPlayer(player)
+         console.log(this.database.GetData())
+     }
+
+     edit(id){
+
+     }
+
+     delete(id){}
 
     //actions
 
-    static login(name){
-        let user = DATA.users.find(user => user.naam == name)
+    login(name){
+        let user = this.database.users.find(user => user.naam == name)
         if(user){
             sessionStorage.setItem("user", user)
             return true;

@@ -11,10 +11,11 @@ class  Database {
         return this.storage;
     }
 
-    generateUniqueKey(){
+    generateUniqueKey(l = 4){
         let key
-        do key = (l = 4) => ('0'.repeat(l) + Math.floor(Math.random() * Math.pow(36, l)).toString(36)).slice(-l)
+        do key = ('0'.repeat(l) + Math.floor(Math.random() * Math.pow(36, l)).toString(36)).slice(-l)
         while(this.storage.keys.includes(key))
+        this.storage.keys.push(key)
         return key
     }
 
@@ -25,6 +26,12 @@ class  Database {
             console.log('The file has been saved!');
         });
     }
+
+    AddPlayer(playerObject){
+        this.storage.players[this.generateUniqueKey()] = playerObject
+        this.backUpStorage()
+    }
+
 }
 
 module.exports = {

@@ -1,4 +1,5 @@
 const {Database} = require("./Utils/Database");
+const {PlayerController} = require("./Controller/PlayerController")
 
 const EXPRESS       = require('express')
 const HTTP          = require('http')
@@ -15,6 +16,7 @@ const IO            = SOCKETIO.listen(SERVER)
 const { Socket } = require('dgram')
 
 const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
+const DATABASE = new Database()
 
 APP.use(EXPRESS.static('Public'))
 
@@ -25,9 +27,8 @@ SERVER.listen(PORT, () => {
     IO.on('connection', SOCKET => {
 
         SOCKET.on('user-connected', e => {
-            let test = new Database();
-            test.backUpStorage();
-            SOCKET.emit('init', DATA)
+            new PlayerController(DATABASE).list()
+            SOCKET.emit('init', DATABASE.GetData())
         })
 
         SOCKET.on('disconnect', e => {

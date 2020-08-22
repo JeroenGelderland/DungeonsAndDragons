@@ -8,23 +8,35 @@ class  Database {
     }
 
     GetData(){
-        return this.storage;
+        return this.storage
     }
 
-    generateUniqueKey(){
+    publishUniqueKey(){
+        const key = this.generateUniqueKey()
+        this.storage.keys.push(key)
+        return key
+    }
+
+    generateUniqueKey(l = 4){
         let key
-        do key = (l = 4) => ('0'.repeat(l) + Math.floor(Math.random() * Math.pow(36, l)).toString(36)).slice(-l)
+        do key = ('0'.repeat(l) + Math.floor(Math.random() * Math.pow(36, l)).toString(36)).slice(-l)
         while(this.storage.keys.includes(key))
         return key
     }
 
-    backUpStorage(){
+    BackUpStorage(){
         const backupContent = JSON.stringify(this.storage,null,4)
         FS.writeFile(DATABASE_FILE, backupContent,(err) => {
-            if (err) throw err;
-            console.log('The file has been saved!');
-        });
+            if (err) throw err
+            console.log('The file has been saved!')
+        })
     }
+
+    AddPlayer(playerObject){
+        this.storage.players[this.publishUniqueKey()] = playerObject
+        this.BackUpStorage()
+    }
+
 }
 
 module.exports = {

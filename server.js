@@ -1,5 +1,5 @@
 const {Database} = require("./Utils/Database");
-const {UserController} = require("./Controller/UserController")
+const {PlayerController} = require("./Controller/PlayerController")
 
 const EXPRESS       = require('express')
 const HTTP          = require('http')
@@ -27,7 +27,7 @@ SERVER.listen(PORT, () => {
     IO.on('connection', SOCKET => {
 
         SOCKET.on('user-connected', e => {
-            new UserController(DATABASE).list()
+            new PlayerController(DATABASE).list()
             SOCKET.emit('init', DATABASE.GetData())
         })
 

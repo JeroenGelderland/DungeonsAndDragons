@@ -1,5 +1,4 @@
-class UserController {
-
+class PlayerController {
 
     constructor(database) {
         this.database = database
@@ -9,8 +8,6 @@ class UserController {
     //display
 
     list(){
-        this.show("84AF")
-        this.create("pietje", 100)
         return this.database.GetData().players
 
     }
@@ -19,26 +16,25 @@ class UserController {
         return this.database.GetData().players[id]
     }
 
-    //writers
+    //creators
 
      create(obj){
 
-        const hpObj = {total : hp, current : hp}
-
-        const player = {
-            name : name,
-            hp : hpObj,
-            items : {}
-        }
-        this.database.AddPlayer(player)
+        this.database.AddPlayer(obj)
          console.log(this.database.GetData())
      }
 
-     edit(id){
-
+     edit(id, obj){
+        this.database.players[id] = obj;
+        this.database.backUpStorage();
      }
 
-     delete(id){}
+     delete(id){
+         delete this.database.players[id]
+         this.database.keys.splice(this.database.keys.indexOf(id), 1)
+     }
+
+
 
     //actions
 
@@ -53,5 +49,5 @@ class UserController {
 }
 
 module.exports = {
-    UserController
+    PlayerController
 }

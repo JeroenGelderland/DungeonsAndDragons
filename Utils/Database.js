@@ -37,6 +37,11 @@ class  Database {
         this.BackUpStorage()
     }
 
+    AddGame(gameObject){
+        this.storage.games[this.publishUniqueKey()] = gameObject
+        this.BackUpStorage()
+    }
+
 }
 
 module.exports = {

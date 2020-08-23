@@ -27,7 +27,7 @@ SERVER.listen(PORT, () => {
     IO.on('connection', SOCKET => {
 
         SOCKET.on('user-connected', e => {
-            new PlayerController(DATABASE).list()
+            new PlayerController(DATABASE).List()
             SOCKET.emit('init', DATABASE.GetData())
         })
 

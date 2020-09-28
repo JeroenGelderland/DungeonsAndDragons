@@ -1,6 +1,6 @@
 const AMOUNT_TO_BE_DELETED = 1
 
-export class List {
+class List {
 
     constructor(content = []) {
         this.Array = content

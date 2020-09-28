@@ -1,5 +1,6 @@
 const {Database} = require("./Utils/Database");
 const {PlayerController} = require("./Controller/PlayerController")
+const {GameController} = require("./Controller/GameController")
 
 const EXPRESS       = require('express')
 const HTTP          = require('http')
@@ -28,7 +29,22 @@ SERVER.listen(PORT, () => {
 
         SOCKET.on('user-connected', e => {
             new PlayerController(DATABASE).List()
-            SOCKET.emit('init', DATABASE.GetData())
+            SOCKET.emit('login')
+        })
+
+        SOCKET.on('login-attempt', userName => {
+            const pc = new PlayerController(DATABASE)
+            if( pc.Login(userName)){
+                SOCKET.emit("login-attempt-succes", pc.GetUserId(userName))
+            }
+            else{
+                SOCKET.emit("login-attempt-failed")
+            }
+        })
+
+        SOCKET.on("start", user => {
+            let Gc = new GameController(DATABASE)
+            SOCKET.emit("start",  DATABASE.GetData())
         })
 
         SOCKET.on('disconnect', e => {

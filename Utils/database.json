@@ -56,6 +56,7 @@
     },
     "games": {
         "Ivo's sicke game": {
+            "dm" : "84AF",
             "players": [
                 "84AF",
                 "F2B0",
@@ -63,11 +64,13 @@
             ]
         },
         "Gust's áÄô sicke game": {
+            "dm" : "84AF",
             "players": [
                 "009E"
             ]
         },
         "NIEUWE CAMPAIGN": {
+            "dm" : "84AF",
             "players": [
                 "F2B0",
                 "009E"

@@ -1,21 +1,28 @@
 const SOCKET = io('http://localhost:3100')
 
 SOCKET.emit('user-connected')
-
-
-
-SOCKET.on('user-connected', name => {
-    document.body.innerText = "test"
-    if (name !== null) {
-        alert(name + ' joined')
-    }
+SOCKET.on("login", () =>{
+    new LoginHandler(SOCKET)
 })
 
-SOCKET.on('user-disconnected', name => {
-    if (name !== null) {
-        alert(name + ' left')
-    }
+SOCKET.on("start", data => {
+    document.getElementById("overview").style.display= "block"
+    let userId = localStorage.getItem("user")
+
+    let gh = new GameHandler();
+    gh.
+
+    document.getElementById("player-game-list")
+    document.getElementById("dm-game-list")
+    //add user games met GameHandler
+    //add dm games met GameHandler
+
 })
+
+
+
+
+
 
 // const createElement = (tagName, attributes, innerHTML, eventListener) => {
 //     if (!Array.isArray(attributes)) return createElement(tagName, [], attributes, innerHTML)

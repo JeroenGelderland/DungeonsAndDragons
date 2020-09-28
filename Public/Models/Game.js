@@ -1,4 +1,4 @@
-import {List} from "../utils/List";
+import {List} from "../Utils/List";
 
 class Game {
 

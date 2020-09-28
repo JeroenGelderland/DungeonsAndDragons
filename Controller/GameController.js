@@ -8,11 +8,11 @@ class GameController {
     //display
 
     List(){
-        return this.database.GetData().players
+        return this.database.GetData().games
     }
 
     Show(id){
-        return this.database.GetData().players[id]
+        return this.database.GetData().games[id]
     }
 
     //creators

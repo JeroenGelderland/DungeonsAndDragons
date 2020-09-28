@@ -33,16 +33,28 @@ class PlayerController {
          this.database.keys.splice(this.database.keys.indexOf(id), 1)
      }
 
+     GetUserId(name){
+         const players = this.database.storage.players;
+         for(let i = 0; i < Object.keys(players).length; i++){
+             if(players[Object.keys(players)[i]].name == name) {
+                 return Object.keys(players)[i]
+             }
+             return null
+         }
+    }
+
 
     //actions
 
     Login(name){
-        let user = this.database.users.find(user => user.naam == name)
-        if(user){
-            sessionStorage.setItem("user", user)
-            return true;
+        const players = this.database.storage.players;
+        for(let i = 0; i < Object.keys(players).length; i++){
+            if(players[Object.keys(players)[i]].name == name) {
+                return true;
+            }
+            return false
         }
-        return false;
+
     }
 }
 

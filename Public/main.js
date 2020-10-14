@@ -1,23 +1,25 @@
 const SOCKET = io('http://localhost:3100')
 
 SOCKET.emit('user-connected')
-SOCKET.on("login", () =>{
-    new LoginHandler(SOCKET)
+
+SOCKET.on("data", data => {
+    new Session(data)
 })
 
-SOCKET.on("start", data => {
-    document.getElementById("overview").style.display= "block"
-    let userId = localStorage.getItem("user")
+function HideAllSections() {
+    document.querySelectorAll("section").forEach(s => {
+        s.style.display = "none"
+    })
+}
 
-    let gh = new GameHandler();
-    gh.
+function ShowAllSections() {
+    document.querySelectorAll("section").forEach(s => {
+        s.style.display = "block"
+    })
+}
 
-    document.getElementById("player-game-list")
-    document.getElementById("dm-game-list")
-    //add user games met GameHandler
-    //add dm games met GameHandler
 
-})
+
 
 
 

@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-        <script defer src="Utils/List.js"></script>
+<head>
+    <meta charset="UTF-8"/>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="Utils/List.js"></script>
+    <script defer src="Session.js"></script>
 
-        <script defer src="Handlers/LoginHandler.js"></script>
-        <script defer src="main.js"></script>
-        <link rel="stylesheet" href="css/stylesheet.css" />
-        <title>D&D</title>
-    </head>
-    <body>
-        <header></header>
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="css/stylesheet.css"/>
+    <title>D&D</title>
+</head>
+<body>
+<header></header>
 
-        <section id="login">
-            <form>
-                <h2>Greetings adventurer! <br> What is your name?</h2>
-                <input id="user-name">
-            </form>
-        </section>
+<section id="pick-game">
+    <ul id="game-list">
+        <!--AUTO GENERATE-->
+    </ul>
+</section>
 
-        <section id="overview">
-            <div>
-                <div>
-                    <h2>player campains</h2>
-                    <ul id="player-game-list"></ul>
-                </div>
-                <div>
-                    <h2>Dm campains</h2>
-                    <ul id="dm-game-list"></ul>
-                </div>
-            </div>
-        </section>
+<section id="pick-player">
+    <ul id="player-list">
+        <!--AUTO GENERATE-->
+    </ul>
+</section>
+
+
 <!--        <section id="lobby" class="active">-->
 <!--            <div id="gameList" class="active"></div>-->
 <!--            <div id="roleList">-->
@@ -52,5 +46,5 @@
 <!--            <h1>Player screen</h1>-->
 <!--            <p>Wow</p>-->
 <!--        </section>-->
-    </body>
+</body>
 </html>

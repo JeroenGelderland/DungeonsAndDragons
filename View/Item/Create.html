@@ -5,17 +5,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/fetchOptions.js" defer></script>
-    <title>Document</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="js/Create.js" defer></script>
+
+    <link rel="stylesheet" href="css/form.css">
+    <title>Create Character</title>
 </head>
 <body>
-<form action="create.php" method="POST">
+<type>item</type>
+<form>
     <h1>Create Character</h1>
 
     <section>
         <p>Character name</p>
         <input name="Name" type="text"><br>
-
+        <select name="Game" id="select-game-list">
         </select><br>
         <p>Appearance</p>
         <input type="file" name="Appearance" accept=".png,.jpeg">
@@ -68,17 +72,17 @@
     <section>
         <h2>Saving Throws</h2>
         <p>Strength</p>
-        <input name="Strength" type="number"><br>
+        <input name="Strength-saving-throw" type="number"><br>
         <p>Dexterity</p>
-        <input name="Dexterity" type="number"><br>
+        <input name="Dexterity-saving-throw" type="number"><br>
         <p>Constitution</p>
-        <input name="Constitution" type="number"><br>
+        <input name="Constitution-saving-throw" type="number"><br>
         <p>Intelligence</p>
-        <input name="Intelligence" type="number"><br>
+        <input name="Intelligence-saving-throw" type="number"><br>
         <p>Wisdom</p>
-        <input name="Wisdom" type="number"><br>
+        <input name="Wisdom-saving-throw" type="number"><br>
         <p>Charisma</p>
-        <input name="" type="number"><br>
+        <input name="Charisma-saving-throw" type="number"><br>
     </section>
 
     <section>

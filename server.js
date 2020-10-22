@@ -19,8 +19,26 @@ const DATABASE = new Database()
 
 APP.use(EXPRESS.static('Public'))
 
+APP.use(EXPRESS.urlencoded({
+    extended: true
+}))
+
 APP.get('/', (req, res) => res.sendFile('index.html', { root: __dirname }))
-APP.get('/create.player', (req, res) => res.sendFile('Player/Create.html', { root: __dirname }))
+APP.get('/player.create', (req, res) => res.sendFile('View/Player/Create.html', { root: __dirname }))
+APP.post('/player.create', (req) => {
+    console.log(req.body )
+})
+
+APP.get('/game.create', (req, res) => res.sendFile('View/Game/Create.html', { root: __dirname }))
+APP.post('/game.create', (req) => {
+    console.log(req.body )
+})
+
+APP.get('/game.list', (req, res) => res.sendFile('View/Game/List.html', { root: __dirname }))
+APP.get('/game', (req, res) => res.sendFile('View/Game/Show.html', { root: __dirname }))
+
+APP.get('/data', (req, res) => res.sendFile('Utils/database.json', { root: __dirname }))
+
 
 SERVER.listen(PORT, () => {
 

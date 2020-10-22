@@ -1,6 +1,3 @@
-const GAME_KEY = "game"
-const PLAYER_KEY = "player"
-
 class Session {
 
     constructor(data) {

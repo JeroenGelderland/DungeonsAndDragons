@@ -1,11 +1,11 @@
 const {Database} = require("./Utils/Database");
 
 const EXPRESS       = require('express')
+const SESSION       = require('express-session')
 const HTTP          = require('http')
 const PORT          = 3000
 const SOCKETIO      = require('socket.io')(PORT + 100)
 const FS            = require('fs')
-const PASSPORT      = require("passport")
 
 const DATABASE_FILE = './Utils/database.json'
 const APP           = EXPRESS()
@@ -19,15 +19,25 @@ const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
 const DATABASE = new Database()
 
 APP.use(EXPRESS.static('Public'))
-
-APP.use(EXPRESS.urlencoded({
-    extended: true
+APP.use(EXPRESS.urlencoded({extended: true}))
+APP.use(SESSION({
+    secret: 'MIJN_SUPER_DUPER_GEHEIME_SLEUTEL',
+    resave: true,
+    saveUninitialized: true
 }))
+
 
 APP.get('/', Authenticate, (req, res) => res.sendFile('index.html', { root: __dirname }))
 
 APP.get('/login', (req, res) => res.sendFile('login.html', { root: __dirname }))
-APP.post('/login', PASSPORT.authenticate('local' , {successRedirect: '/', failureRedirect: '/login'}))
+APP.post('/login',(req, res) => {
+    const login_attempt = login(req.body, req)
+    if (login_attempt.status){
+        res.redirect('/')
+    }
+    else{
+        res.redirect('/login')
+    }})
 
 APP.get('/player.create', Authenticate,(req, res) => res.sendFile('View/Player/Create.html', { root: __dirname }))
 APP.post('/player.create', Authenticate,(req) => {
@@ -56,8 +66,7 @@ SERVER.listen(PORT, () => {
 })
 
 function Authenticate(req, res, next){
-    console.log("test")
-    if(req.isAuthenticated()){
+    if(req.session.user != null){
         return next()
     }
     else{
@@ -65,4 +74,17 @@ function Authenticate(req, res, next){
     }
 } {
 
+}
+let x = 0
+function login(login_attempt, req) {
+    const user = DATABASE.getUserByName(login_attempt.username)
+
+    if(user != null){
+        if(user.password == login_attempt.password){
+            req.session.user = user.username
+            return {status : true, message : "succes"}
+        }
+        return {status : false, message : "incorrect credentials"}
+    }
+    return {status : false, message : "login failed"}
 }

@@ -55,8 +55,10 @@ class Database {
         this.BackUpStorage()
     }
 
+    getUserByName(username) {
+        return this.storage.users.find(user => user.username == username)
+    }
 }
-
 module.exports = {
     Database
 }

@@ -1,8 +1,8 @@
 {
     "games": [
         {
-            "Type": "game",
             "Name": "Jeroen",
+            "Users" : [],
             "Password": "test",
             "Players": [
                 {
@@ -40,6 +40,21 @@
                 }
             ],
             "Items": []
+        }
+    ],
+
+    "users" : [
+        {
+            "username" : "Pim",
+            "password" : "test1"
+        },
+        {
+            "username" : "Pam",
+            "password" : "test2"
+        },
+        {
+            "username" : "Pet",
+            "password" : "test3"
         }
     ]
 }

@@ -1,5 +1,5 @@
 const FS = require('fs')
-const DATABASE_FILE = './Utils/database.json'
+const DATABASE_FILE = './server/database/database.json'
 
 class Database {
 

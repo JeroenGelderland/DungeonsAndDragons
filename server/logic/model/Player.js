@@ -5,7 +5,7 @@ class Player {
         this.Name = null
         this.Level = 1
         this.Race = null
-        this.Img_url = "Images/placeholder.jpg"
+        this.Img_url = "images/placeholder.jpg"
         this.Experience = 0
         this.Alignment = null
         this.Class = null
@@ -22,12 +22,6 @@ class Player {
         this.Skills = []
 
         this.Inventory = new Inventory()
-    }
-
-
-
-    PassivePerception(){
-    //todo calc and return passive wisdom
     }
 
     ToJson(){

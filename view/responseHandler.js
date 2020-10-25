@@ -20,7 +20,12 @@ function RES_error() {
 }
 
 function RES_readFile(path){
-    FS.readFileSync(path, "utf8").replace(/\"/g,  "'")
+    let file_content = FS.readFileSync(path, "utf8")
+    file_content = file_content.replace(/\"/g,  "'")
+    file_content = file_content.replace(/\n|\r/g,  "")
+    file_content = file_content.replace(/\s{2}/g,  "")
+
+    return file_content
 }
 
 function RES_Login() {
@@ -47,6 +52,78 @@ function RES_Login() {
     }
 }
 
+function RES_Portal() {
+    try {
+        const HTML = RES_readFile(`${ROOT}/portal.html`)
+
+        return {
+            head: {
+                title: 'DnD portal'
+            },
+            body: {
+                main: {
+                    html: HTML
+                }
+            },
+            request: {
+                status: 200,
+                pathname: "/portal"
+            }
+        }
+    } catch (e) {
+        return RES_Error()
+    }
+}
+
+function RES_PlayerCreate() {
+    try {
+        const HTML = RES_readFile(`${ROOT}/player/create.html`)
+
+        return {
+            head: {
+                title: 'create player'
+            },
+            body: {
+                main: {
+                    html: HTML
+                }
+            },
+            request: {
+                status: 200,
+                pathname: "/player.create"
+            }
+        }
+    } catch (e) {
+        return RES_Error()
+    }
+}
+function RES_GameCreate() {
+    try {
+        const HTML = RES_readFile(`${ROOT}/game/create.html`)
+
+        return {
+            head: {
+                title: 'create game'
+            },
+            body: {
+                main: {
+                    html: HTML
+                }
+            },
+            request: {
+                status: 200,
+                pathname: "/game.create"
+            }
+        }
+    } catch (e) {
+        return RES_Error()
+    }
+}
+
+
 module.exports = {
-    RES_Login
+    RES_Login,
+    RES_Portal,
+    RES_GameCreate,
+    RES_PlayerCreate
 }

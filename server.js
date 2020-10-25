@@ -1,6 +1,9 @@
 (async req => {
     const PORT = 3000
 
+    const ENV_PACKAGE = await req('dotenv')
+    ENV_PACKAGE.config()
+
     const EXPRESS = await req('express')
     const SESSION = await req('express-session')
     const HTTP = await req('http')
@@ -13,10 +16,6 @@
 
 
     const {Socket} = await req('dgram')
-
-    // const DATABASE_FILE = './server/database/database.json'
-    // const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
-
     const {Database} = require('./server/database/database.js')
     const RES_HANDLER = require('./view/responseHandler.js')
     const DATABASE = new Database()
@@ -28,38 +27,32 @@
         resave: true,
         saveUninitialized: true
     }))
+    const ENV = process.env
     const VIEW_ROOT = __dirname + "/view/"
 
+    APP.get(ENV.INDEX_PATH, Authenticate, (req, res) => res.sendFile('index.html', {root: __dirname}))
 
+    APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_Portal))
 
-    APP.get('/', Authenticate, (req, res) => res.sendFile('portal.html', {root: VIEW_ROOT}))
-
-    APP.get('/login', (req, res) => {
-        console.log(RES_HANDLER.RES_Login)
-        res.json(RES_HANDLER.RES_Login())
-    })
-    APP.post('/login', (req, res) => {
+    APP.get(ENV.LOGIN_PATH, (req, res) => res.json(RES_HANDLER.RES_Login()))
+    APP.post(ENV.LOGIN_PATH, (req, res) => {
         const login_attempt = login(req.body, req)
         if (login_attempt.status) {
-            res.status(200).redirect('/')
+            res.status(200).redirect('/portal')
         } else {
             res.status(401).redirect('/login')
         }
     })
 
-    APP.get('/player.create', Authenticate, (req, res) => res.sendFile('view/player/create.html', {root:  VIEW_ROOT}))
-    APP.post('/player.create', Authenticate, (req) => {
+    APP.get(ENV.PLAYER_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_PlayerCreate))
+    APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, (req) => {
         console.log(req.body)
     })
 
-    APP.get('/game.create', Authenticate, (req, res) => res.sendFile('view/game/create.html', {root:  VIEW_ROOT}))
-    APP.post('/game.create', Authenticate, (req) => {
+    APP.get(ENV.GAME_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))
+    APP.post(ENV.GAME_CREATE_PATH, Authenticate, (req) => {
         console.log(req.body)
     })
-
-    APP.get('/game.portal', Authenticate, (req, res) => res.sendFile('view/game/portal.html', {root:  VIEW_ROOT}))
-    APP.get('/game', Authenticate, (req, res) => res.sendFile('view/game/Show.html', {root:  VIEW_ROOT}))
-
 
     SERVER.listen(PORT, () => {
         IO.on('connection', SOCKET => {
@@ -73,10 +66,12 @@
 
 
     function Authenticate(req, res, next) {
-        if (req.session.user !== null || req.session === undefined) {
+        if (req.session.user !== null && req.session.user != null) {
+            console.log("user: "+req.session.user)
+
             return next()
         } else {
-            res.redirect('/login')
+            res.send('401')
         }
     }
 

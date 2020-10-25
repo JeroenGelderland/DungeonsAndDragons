@@ -14,10 +14,11 @@
 
     const {Socket} = await req('dgram')
 
-    const DATABASE_FILE = './server/database/database.json'
-    const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
+    // const DATABASE_FILE = './server/database/database.json'
+    // const DATA = JSON.parse(FS.readFileSync(DATABASE_FILE))
 
     const {Database} = require('./server/database/database.js')
+    const RES_HANDLER = require('./view/responseHandler.js')
     const DATABASE = new Database()
 
     APP.use(EXPRESS.static('public'))
@@ -29,9 +30,14 @@
     }))
     const VIEW_ROOT = __dirname + "/view/"
 
+
+
     APP.get('/', Authenticate, (req, res) => res.sendFile('portal.html', {root: VIEW_ROOT}))
 
-    APP.get('/login', (req, res) => res.sendFile('login.html', {root:  VIEW_ROOT}))
+    APP.get('/login', (req, res) => {
+        console.log(RES_HANDLER.RES_Login)
+        res.json(RES_HANDLER.RES_Login())
+    })
     APP.post('/login', (req, res) => {
         const login_attempt = login(req.body, req)
         if (login_attempt.status) {
@@ -67,7 +73,7 @@
 
 
     function Authenticate(req, res, next) {
-        if (req.session.user !== null) {
+        if (req.session.user !== null || req.session === undefined) {
             return next()
         } else {
             res.redirect('/login')

@@ -44,7 +44,15 @@
         }
     })
 
-    APP.get(ENV.PLAYER_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_PlayerCreate))
+    APP.get(ENV.PLAYER_CREATE_PATH, Authenticate, (req, res) => {
+        if(req.xhr){
+            res.json(RES_HANDLER.RES_PlayerCreate)
+        }
+        else{
+            res.sendFile("/player/create.html", {root: VIEW_ROOT})
+        }
+    })
+
     APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, (req) => {
         console.log(req.body)
     })

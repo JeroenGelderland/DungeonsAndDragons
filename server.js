@@ -8,7 +8,6 @@
     const SESSION = await req('express-session')
     const HTTP = await req('http')
     const SOCKETIO = await req('socket.io').then(val => val(PORT + 100))
-    const FS = await req('fs')
 
     const APP = EXPRESS()
     const SERVER = HTTP.createServer(APP)
@@ -34,7 +33,10 @@
 
     APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_Portal))
 
-    APP.get(ENV.LOGIN_PATH, (req, res) => res.json(RES_HANDLER.RES_Login()))
+    APP.get(ENV.LOGIN_PATH, (req, res) => {
+        if (req.xhr) res.json(RES_HANDLER.RES_Login())
+        else res.sendFile("login.html", {root: VIEW_ROOT})
+    })
     APP.post(ENV.LOGIN_PATH, (req, res) => {
         const login_attempt = login(req.body, req)
         if (login_attempt.status) {

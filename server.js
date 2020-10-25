@@ -30,7 +30,7 @@
     const ENV = process.env
     const VIEW_ROOT = __dirname + "/view/"
 
-    APP.get(ENV.INDEX_PATH, Authenticate, (req, res) => res.sendFile('index.html', {root: __dirname}))
+    APP.get(ENV.INDEX_PATH, (req, res) => res.sendFile('index.html', {root: __dirname}))
 
     APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_Portal))
 

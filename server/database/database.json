@@ -1,0 +1,60 @@
+{
+    "games": [
+        {
+            "Name": "Jeroen",
+            "Users" : [],
+            "Password": "test",
+            "Players": [
+                {
+                    "Name": "Lawful good",
+                    "Level": 1,
+                    "Race": null,
+                    "Img_url": "Images/placeholder.jpg",
+                    "Experience": 0,
+                    "Alignment": null,
+                    "Class": null,
+                    "Inspiration": false,
+                    "Strenght": "0",
+                    "Dexterity": "0",
+                    "Constitution": "0",
+                    "Intelligence": "0",
+                    "Wisdom": "0",
+                    "Charisma": "0",
+                    "SavingThrows": [],
+                    "Skills": [
+                        "Religion",
+                        "Sleight-of-hand",
+                        "Stealth"
+                    ],
+                    "Inventory": {
+                        "Items": [],
+                        "Purse": {
+                            "CP": 0,
+                            "SP": 0,
+                            "EP": 0,
+                            "GP": 0,
+                            "PP": 0
+                        },
+                        "Rations": 0
+                    }
+                }
+            ],
+            "Items": []
+        }
+    ],
+
+    "users" : [
+        {
+            "username" : "Pim",
+            "password" : "test1"
+        },
+        {
+            "username" : "Pam",
+            "password" : "test2"
+        },
+        {
+            "username" : "Pet",
+            "password" : "test3"
+        }
+    ]
+}

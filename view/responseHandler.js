@@ -33,10 +33,10 @@ function RES_Login() {
         const HTML = RES_readFile(`${ROOT}/login.html`)
 
         return {
-            head: {
-                title: 'DnD login'
-            },
-            body: {
+                    head: {
+                        title: 'DnD login'
+                    },
+                    body: {
                 main: {
                     html: HTML
                 }

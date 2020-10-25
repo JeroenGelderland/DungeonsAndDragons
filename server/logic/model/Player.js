@@ -10,6 +10,8 @@ class Player {
         this.Alignment = null
         this.Class = null
         this.Inspiration = false
+        this.User = null
+        this.Game = null
 
         this.Strenght = 0
         this.Dexterity = 0

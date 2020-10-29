@@ -54,7 +54,6 @@
             res.sendFile("/player/create.html", {root: VIEW_ROOT})
         }
     })
-
     APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, (req) => {
         console.log(req.body)
     })
@@ -62,6 +61,12 @@
     APP.get(ENV.GAME_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))
     APP.post(ENV.GAME_CREATE_PATH, Authenticate, (req) => {
         console.log(req.body)
+    })
+
+    APP.get("/game/:game_name", Authenticate, (req, res) => {
+        console.log(req.params)
+        console.log(DATABASE.FindGame(req.params.game_name))
+        res.json(DATABASE.FindGame(req.params.game_name))
     })
 
     SERVER.listen(PORT, () => {
@@ -76,12 +81,14 @@
 
 
     function Authenticate(req, res, next) {
+
         if (req.session.user !== null && req.session.user != null) {
             console.log("user: "+req.session.user)
 
             return next()
         } else {
-            res.send('401')
+            if(req.xhr) res.send('401')
+            else{res.redirect(ENV.LOGIN_PATH)}
         }
     }
 

@@ -42,6 +42,12 @@ class Database {
         }
     }
 
+    FindGame(gameName){
+        const game = this.storage.games.find(game => game.Name === gameName)
+        console.log(game)
+        if(game !== null)return game
+        return 404
+    }
 
     AddGame(gameObject) {
         gameObject.Players = [];

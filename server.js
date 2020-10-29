@@ -82,9 +82,9 @@
 
     function Authenticate(req, res, next) {
 
-        if (req.session.user !== null && req.session.user != null) {
-            console.log("user: "+req.session.user)
 
+        if (req.session.user !== null && req.session.user != null || ENV.DEVELOPER_MODE) {
+            console.log("user: "+req.session.user)
             return next()
         } else {
             if(req.xhr) res.send('401')

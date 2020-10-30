@@ -1,3 +1,5 @@
+const Inventory = require("./Inventory.js")
+
 class Player {
 
     constructor() {
@@ -20,13 +22,19 @@ class Player {
         this.Wisdom = 0
         this.Charisma = 0
 
+        this.Proficiency = 0
+
         this.SavingThrows = []
         this.Skills = []
 
-        this.Inventory = new Inventory()
+        this.Inventory = new Inventory.Inventory()
     }
 
     ToJson(){
         return JSON.stringify(this)
     }
+}
+
+module.exports = {
+    Player
 }

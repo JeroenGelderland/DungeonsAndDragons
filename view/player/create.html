@@ -11,13 +11,14 @@
     <title>Create Character</title>
 </head>
 <body>
-<form method="post" action="/game.create">
+<form method="post" action="/player.create">
     <h1>Create Character</h1>
 
     <section>
         <p>Character name</p>
         <input name="Name" type="text"><br>
-        <select name="select-game-list">
+        <p>Game</p>
+        <select name="Game" id="select-game-list">
         </select><br>
         <p>Appearance</p>
         <input type="file" name="Appearance" accept=".png,.jpeg">
@@ -33,7 +34,6 @@
 
         <p>Race</p>
         <select name="Race" id="select-race-list">
-
         </select><br>
         <p>Alignment</p>
         <select name="Alignment">
@@ -48,7 +48,7 @@
             <option value="Chaotic evil">Chaotic evil</option>
         </select><br>
         <p>Experience points</p>
-        <input name="Experience-points" type="number"><br>
+        <input name="Experience_points" type="number"><br>
     </section>
 
     <section class="main-stats">
@@ -69,12 +69,12 @@
 
     <section class="Saving_throws">
         <h2>Saving Throws</h2>
-        <p>Strength</p><input type="checkbox" name="Strength-saving-throw"><br>
-        <p>Dexterity</p><input type="checkbox"  name="Dexterity-saving-throw"><br>
-        <p>Constitution</p><input type="checkbox"  name="Constitution-saving-throw"><br>
-        <p>Intelligence</p><input type="checkbox"  name="Intelligence-saving-throw"><br>
-        <p>Wisdom</p><input type="checkbox"  name="Wisdom-saving-throw"><br>
-        <p>Charisma</p><input type="checkbox"  name="Charisma-saving-throw">
+        <p>Strength</p><input type="checkbox" name="Strength_saving_throw"><br>
+        <p>Dexterity</p><input type="checkbox"  name="Dexterity_saving_throw"><br>
+        <p>Constitution</p><input type="checkbox"  name="Constitution_saving_throw"><br>
+        <p>Intelligence</p><input type="checkbox"  name="Intelligence_saving_throw"><br>
+        <p>Wisdom</p><input type="checkbox"  name="Wisdom_saving_throw"><br>
+        <p>Charisma</p><input type="checkbox"  name="Charisma_saving_throw">
     </section>
 
     <section class="Skills">
@@ -82,7 +82,7 @@
         <p>Acrobatics</p>
         <input name="Acrobatics" type="checkbox"><br>
         <p>Animal handling</p>
-        <input name="Animal-handling" type="checkbox"><br>
+        <input name="Animal_handling" type="checkbox"><br>
         <p>Arcana</p>
         <input name="Arcana" type="checkbox"><br>
         <p>Athletics</p>
@@ -110,7 +110,7 @@
         <p>Religion</p>
         <input name="Religion" type="checkbox"><br>
         <p>Sleight of Hand</p>
-        <input name="Sleight-of-hand" type="checkbox"><br>
+        <input name="Sleight_of_hand" type="checkbox"><br>
         <p>Stealth</p>
         <input name="Stealth" type="checkbox"><br>
         <p>Survival</p>
@@ -121,7 +121,7 @@
 <!--        <p>Inspiration</p>-->
 <!--        <input name="Inspiration" type="checkbox"><br>-->
         <p>Proficiency Bonus</p>
-        <input name="Proficiency-bonus" type="number"><br>
+        <input name="Proficiency_bonus" type="number"><br>
     </section>
 
 

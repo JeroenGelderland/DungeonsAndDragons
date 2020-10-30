@@ -9,6 +9,7 @@
     const HTTP = await req('http')
     const SOCKETIO = await req('socket.io').then(val => val(PORT + 100))
 
+
     const APP = EXPRESS()
     const SERVER = HTTP.createServer(APP)
     const IO = SOCKETIO.listen(SERVER)
@@ -17,7 +18,10 @@
     const {Socket} = await req('dgram')
     const {Database} = require('./server/database/database.js')
     const RES_HANDLER = require('./view/responseHandler.js')
+    const PlayerFactory = require('./server/logic/factories/PlayerFactory.js')
+
     const DATABASE = new Database()
+
 
     APP.use(EXPRESS.static('public'))
     APP.use(EXPRESS.urlencoded({extended: true}))
@@ -55,7 +59,8 @@
         }
     })
     APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, (req) => {
-        console.log(req.body)
+        const fac = new PlayerFactory.PlayerFactory()
+        DATABASE.AddPlayer(fac.create_player(req.body))
     })
 
     APP.get(ENV.GAME_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))
@@ -64,10 +69,15 @@
     })
 
     APP.get("/game/:game_name", Authenticate, (req, res) => {
-        console.log(req.params)
-        console.log(DATABASE.FindGame(req.params.game_name))
         res.json(DATABASE.FindGame(req.params.game_name))
     })
+    APP.get("/games", Authenticate, (req, res) => {
+        games = {}
+        games.names = DATABASE.GetData().games.map(g => g.Name)
+        console.log(games)
+        res.json(games.names)
+    })
+
 
     SERVER.listen(PORT, () => {
         IO.on('connection', SOCKET => {

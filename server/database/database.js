@@ -32,12 +32,11 @@ class Database {
         })
     }
 
-
     AddPlayer(obj) {
 
         let game = this.storage.games.find(game => game.Name == obj.Game);
-        if (game.Players.find(player => player.Name == obj.Body.Name) == null) {
-            this.storage.games.find(game => game.Name == obj.Game).Players.push(obj.Body)
+        if (game.players.find(player => player.Name == obj.Body.Name) == null) {
+            this.storage.games.find(game => game.Name == obj.Game).players.push(obj.toJSON())
             this.BackUpStorage()
         }
     }

@@ -13,3 +13,7 @@ class Inventory {
         this.Rations = 0
     }
 }
+
+module.exports = {
+    Inventory
+}

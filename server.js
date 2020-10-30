@@ -35,7 +35,10 @@
 
     APP.get(ENV.INDEX_PATH, (req, res) => res.sendFile('index.html', {root: __dirname}))
 
-    APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_Portal))
+    APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => {
+        if (req.xhr)res.json(RES_HANDLER.RES_Portal)
+        else res.sendFile("portal.html", {root: VIEW_ROOT})
+    })
 
     APP.get(ENV.LOGIN_PATH, (req, res) => {
         if (req.xhr) res.json(RES_HANDLER.RES_Login())
@@ -72,10 +75,7 @@
         res.json(DATABASE.FindGame(req.params.game_name))
     })
     APP.get("/games", Authenticate, (req, res) => {
-        games = {}
-        games.names = DATABASE.GetData().games.map(g => g.Name)
-        console.log(games)
-        res.json(games.names)
+        res.json(DATABASE.GetData().games)
     })
 
 
@@ -92,8 +92,12 @@
 
     function Authenticate(req, res, next) {
 
+        if(ENV.DEVELOPER_MODE){
+            req.session.user = "dev"
+            return next()
+        }
 
-        if (req.session.user !== null && req.session.user != null || ENV.DEVELOPER_MODE) {
+        if (req.session.user !== null && req.session.user != null) {
             console.log("user: "+req.session.user)
             return next()
         } else {

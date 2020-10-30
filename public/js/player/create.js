@@ -8,6 +8,7 @@ fillSelect("select-race-list", races)
 fillSelect("select-class-list", classes)
 
 fetch("http://" + window.location.host + "/games").then(r => r.json()).then(games => {
+    games = DATABASE.GetData().games.map(g => g.Name)
     fillSelect("select-game-list", games)
 })
 

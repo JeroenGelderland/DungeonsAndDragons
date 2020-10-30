@@ -3,7 +3,7 @@ const SOCKET = io('http://localhost:3100')
 SOCKET.emit('user-connected')
 
 SOCKET.on("data", data => {
-    new Session(data)
+    // new Session(data)
 })
 
 function HideAllSections() {

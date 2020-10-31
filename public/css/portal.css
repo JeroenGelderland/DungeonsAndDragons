@@ -1,0 +1,18 @@
+body{
+    display: flex;
+}
+
+nav{
+    flex: 1;
+    max-width: 200px;
+    background: green;
+}
+
+body > div{
+    flex: 2;
+}
+
+body > div:last-of-type{
+    border-left: solid 1px black;
+    display: none;
+}

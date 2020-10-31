@@ -71,12 +71,17 @@
         console.log(req.body)
     })
 
-    APP.get("/game/:game_name", Authenticate, (req, res) => {
-        res.json(DATABASE.FindGame(req.params.game_name))
+    APP.get("/Game.dashboard", Authenticate, (req, res) => {
+        res.sendFile("/game/game.html", {root: VIEW_ROOT})
     })
+
+    APP.get("/game/:game_name", Authenticate, (req, res) => res.json(DATABASE.FindGame(req.params.game_name)))
+
     APP.get("/games", Authenticate, (req, res) => {
         res.json(DATABASE.GetData().games)
     })
+
+    APP.get("/user", Authenticate, (req, res) => res.json(req.session.user))
 
 
     SERVER.listen(PORT, () => {

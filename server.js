@@ -31,9 +31,9 @@
         saveUninitialized: true
     }))
     const ENV = process.env
-    const VIEW_ROOT = __dirname + "/view/"
+    const VIEW_ROOT = __dirname + '/view/'
 
-    APP.get(ENV.INDEX_PATH, (req, res) => res.sendFile('index.html', {root: __dirname}))
+    APP.get(ENV.INDEX_PATH, Authenticate, (req, res) => res.sendFile('index.html', {root: __dirname}))
 
     APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => {
         if (req.xhr)res.json(RES_HANDLER.RES_Portal)
@@ -96,19 +96,19 @@
 
 
     function Authenticate(req, res, next) {
-
-        if(ENV.DEVELOPER_MODE){
+        if (JSON.parse(ENV.DEVELOPER_MODE)) {
             req.session.user = "dev"
             return next()
         }
 
-        if (req.session.user !== null && req.session.user != null) {
-            console.log("user: "+req.session.user)
+        if (req.session.user) {
+            console.log("user: " + req.session.user)
             return next()
-        } else {
-            if(req.xhr) res.send('401')
-            else{res.redirect(ENV.LOGIN_PATH)}
         }
+
+        if (req.xhr) res.send('401')
+        else { res.redirect(ENV.LOGIN_PATH) }
+        
     }
 
     function login(login_attempt, req) {

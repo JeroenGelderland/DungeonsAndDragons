@@ -33,6 +33,3 @@ fetch("/user").then(r => r.json().then(user => {
         })
     })
 }))
-
-
-

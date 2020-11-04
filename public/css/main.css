@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
+    border: 0 solid;
 }
 
 body {
@@ -10,18 +10,18 @@ body {
 }
 
 section {
-    height: 95vh;
-    display: none;
+    padding: 48px;
+    border-width: 1px;
+    border-radius: 8px;
 }
 
 header {
-    border-bottom: 1px solid gray;
-    height: 5vh;
+    border-bottom-width: 1px;
 }
 
 #login {
-    padding-top: 35vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
 }
@@ -32,20 +32,16 @@ header {
     text-align: center;
 }
 
-#login > form > input:focus {
-    outline: none;
-}
-
 #overview > div {
     display: flex;
     height: 100%;
 }
 
 #overview > div > div {
-    flex: 1;
+    flex-grow: 1;
     height: 100%;
 }
 
 #overview > div > div:first-of-type {
-    border-right: 1px solid;
+    border-right-width: 1px;
 }

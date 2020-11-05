@@ -1,33 +1,36 @@
-const Inventory = require("./Inventory.js")
+const {Inventory} = require("./Inventory.js")
 
 class Player {
 
-    constructor() {
+    constructor(data, user) {
 
-        this.Name = null
+        this.Name = data.Name
+        this.Img_url = data.Appearance
+        this.Game = data.Game
+
+        this.Class = data.Class
+        this.Race = data.Race
+        this.Alignment = data.Alignment
+
+        this.Strenght = parseInt(data.Strenght)
+        this.Dexterity = parseInt(data.Dexterity)
+        this.Constitution = parseInt(data.Constitution)
+        this.Intelligence = parseInt(data.Intelligence)
+        this.Wisdom = parseInt(data.Wisdom)
+        this.Charisma = parseInt(data.Charisma)
+
+        this.Proficiency = parseInt(data.Proficiency_bonus)
+        this.Experience = parseInt(data.Experience_points)
+
         this.Level = 1
-        this.Race = null
-        this.Img_url = "images/placeholder.jpg"
         this.Experience = 0
-        this.Alignment = null
-        this.Class = null
         this.Inspiration = false
-        this.User = null
-        this.Game = null
+        this.User = user
 
-        this.Strenght = 0
-        this.Dexterity = 0
-        this.Constitution = 0
-        this.Intelligence = 0
-        this.Wisdom = 0
-        this.Charisma = 0
+        this.SavingThrows = "savingThrows" in data ? data.savingThrows : [] //werkt nog niet
+        this.Skills = "skill" in data ? data.skills : []  //werkt nog niet
 
-        this.Proficiency = 0
-
-        this.SavingThrows = []
-        this.Skills = []
-
-        this.Inventory = new Inventory.Inventory()
+        this.Inventory = new Inventory()
     }
 
     ToJson(){

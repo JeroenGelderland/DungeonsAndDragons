@@ -19,7 +19,7 @@
     const { Socket } = await req('dgram')
     const { Database } = require('./server/database/database.js')
     const RES_HANDLER = require('./view/responseHandler.js')
-    const PlayerFactory = require('./server/logic/factories/PlayerFactory.js')
+    const { Player } = require('./server/logic/model/Player.js')
 
     const DATABASE = new Database()
 
@@ -64,8 +64,8 @@
     })
     APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, upload.single('Appearance'), (req) => {
         req.body.Appearance = req.file.filename
-        const fac = new PlayerFactory.PlayerFactory()
-        DATABASE.AddPlayer(fac.create_player(req.body))
+        
+        DATABASE.AddPlayer(new Player(req.body))
     })
 
     APP.get(ENV.GAME_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))

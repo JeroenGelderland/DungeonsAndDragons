@@ -7,7 +7,7 @@ class PlayerFactory {
     }
 
     create_player(data){
-
+        console.log(data)
         let player = new Player.Player()
         player.Name = data.Name
         player.Img_url = data.Appearance

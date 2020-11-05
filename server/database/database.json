@@ -2,7 +2,9 @@
     "games": [
         {
             "Name": "Ham",
-            "Users" : ["dev"],
+            "Users": [
+                "dev"
+            ],
             "Password": "test",
             "Players": [
                 {
@@ -17,36 +19,66 @@
         },
         {
             "Name": "Kaas",
-            "Users" : ["dev"],
+            "Users": [
+                "dev"
+            ],
             "Password": "test",
             "Players": [
                 {
                     "Name": "good leurd",
                     "User": "dev"
-
                 },
                 {
                     "Name": "meine gutte",
                     "User": "dev"
-
+                },
+                {
+                    "Name": "yoga",
+                    "Img_url": "a4ea37e43a927f555494dd088fb1b57d",
+                    "Game": "Kaas",
+                    "Class": "Barbarian",
+                    "Race": "Dragonborn",
+                    "Alignment": "Lawful good",
+                    "Strenght": null,
+                    "Dexterity": 0,
+                    "Constitution": 0,
+                    "Intelligence": 0,
+                    "Wisdom": 0,
+                    "Charisma": 0,
+                    "Proficiency": null,
+                    "Experience": 0,
+                    "Level": 1,
+                    "Inspiration": false,
+                    "SavingThrows": [],
+                    "Skills": [],
+                    "Inventory": {
+                        "Items": [],
+                        "Purse": {
+                            "CP": 0,
+                            "SP": 0,
+                            "EP": 0,
+                            "GP": 0,
+                            "PP": 0
+                        },
+                        "Rations": 0
+                    }
                 }
             ],
             "Items": []
         }
     ],
-
-    "users" : [
+    "users": [
         {
-            "username" : "Pim",
-            "password" : "test1"
+            "username": "Pim",
+            "password": "test1"
         },
         {
-            "username" : "Pam",
-            "password" : "test2"
+            "username": "Pam",
+            "password": "test2"
         },
         {
-            "username" : "Pet",
-            "password" : "test3"
+            "username": "Pet",
+            "password": "test3"
         }
     ]
 }

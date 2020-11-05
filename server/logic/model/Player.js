@@ -12,7 +12,7 @@ class Player {
         this.Race = data.Race
         this.Alignment = data.Alignment
 
-        this.Strenght = parseInt(data.Strenght)
+        this.Strength = parseInt(data.Strength)
         this.Dexterity = parseInt(data.Dexterity)
         this.Constitution = parseInt(data.Constitution)
         this.Intelligence = parseInt(data.Intelligence)

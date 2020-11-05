@@ -1,3 +1,8 @@
+const doc = document
+const win = window
+const location = win.location
+
+
 import { PlayerCreatorPageLoader } from '/js/player/create.js'
 
 const playerCreatorPageLoader = new PlayerCreatorPageLoader({

@@ -34,18 +34,18 @@
     const ENV = process.env
     const VIEW_ROOT = __dirname + '/view/'
 
-    APP.get(ENV.INDEX_PATH, Authenticate, (req, res) => res.sendFile('index.html', { root: __dirname }))
+    APP.get('/', Authenticate, (req, res) => res.sendFile('index.html', { root: __dirname }))
 
-    APP.get(ENV.PORTAL_PATH, Authenticate, (req, res) => {
+    APP.get('/portal', Authenticate, (req, res) => {
         if (req.xhr) res.json(RES_HANDLER.RES_Portal)
-        else res.sendFile("portal.html", { root: VIEW_ROOT })
+        else res.sendFile('portal.html', { root: VIEW_ROOT })
     })
 
-    APP.get(ENV.LOGIN_PATH, (req, res) => {
+    APP.get('/login', (req, res) => {
         if (req.xhr) res.json(RES_HANDLER.RES_Login())
-        else res.sendFile("login.html", { root: VIEW_ROOT })
+        else res.sendFile('login.html', { root: VIEW_ROOT })
     })
-    APP.post(ENV.LOGIN_PATH, (req, res) => {
+    APP.post('/login', (req, res) => {
         const login_attempt = login(req.body, req)
         if (login_attempt.status) {
             res.status(200).redirect('/portal')
@@ -53,37 +53,44 @@
             res.status(401).redirect('/login')
         }
     })
+    APP.get('/logout', (req, res) => {
+        delete req.session.user
+        if (req.xhr) res.json(RES_HANDLER.RES_Login())
+        else {
+            res.status(401).redirect('/login')
+        }
+    })
 
-    APP.get(ENV.PLAYER_CREATE_PATH, Authenticate, (req, res) => {
+    APP.get('/create-player', Authenticate, (req, res) => {
         if (req.xhr) {
             res.json(RES_HANDLER.RES_PlayerCreate)
         }
         else {
-            res.sendFile("/player/create.html", { root: VIEW_ROOT })
+            res.sendFile('/player/create.html', { root: VIEW_ROOT })
         }
     })
-    APP.post(ENV.PLAYER_CREATE_PATH, Authenticate, upload.single('Appearance'), (req) => {
+    APP.post('/create-player', Authenticate, upload.single('Appearance'), (req) => {
         req.body.Appearance = req.file.filename
         
         DATABASE.AddPlayer(new Player(req.body))
     })
 
-    APP.get(ENV.GAME_CREATE_PATH, Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))
-    APP.post(ENV.GAME_CREATE_PATH, Authenticate, (req) => {
+    APP.get('/create-game', Authenticate, (req, res) => res.json(RES_HANDLER.RES_GameCreate))
+    APP.post('/create-game', Authenticate, (req) => {
         console.log(req.body)
     })
 
-    APP.get("/Game.dashboard", Authenticate, (req, res) => {
-        res.sendFile("/game/game.html", { root: VIEW_ROOT })
+    APP.get('/Game.dashboard', Authenticate, (req, res) => {
+        res.sendFile('/game/game.html', { root: VIEW_ROOT })
     })
 
-    APP.get("/game/:game_name", Authenticate, (req, res) => res.json(DATABASE.FindGame(req.params.game_name)))
+    APP.get('/game/:game_name', Authenticate, (req, res) => res.json(DATABASE.FindGame(req.params.game_name)))
 
-    APP.get("/games", Authenticate, (req, res) => {
+    APP.get('/games', Authenticate, (req, res) => {
         res.json(DATABASE.GetData().games)
     })
 
-    APP.get("/user", Authenticate, (req, res) => res.json(req.session.user))
+    APP.get('/user', Authenticate, (req, res) => res.json(req.session.user))
 
 
     SERVER.listen(PORT, () => {
@@ -99,12 +106,12 @@
 
     function Authenticate(req, res, next) {
         if (JSON.parse(ENV.DEVELOPER_MODE)) {
-            req.session.user = "dev"
+            req.session.user = 'dev'
             return next()
         }
 
         if (req.session.user) {
-            console.log("user: " + req.session.user)
+            console.log('user: ' + req.session.user)
             return next()
         }
 

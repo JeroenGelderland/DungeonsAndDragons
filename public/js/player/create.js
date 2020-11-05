@@ -1,6 +1,6 @@
 export class PlayerCreatorPageLoader {
     constructor ({ races, classes }) {
-        Object.assign(this, { races, classes })
+        Object.assign(this, ...arguments)
     }
 
     fillSelect (id, content_array) {

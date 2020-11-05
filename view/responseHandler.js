@@ -1,4 +1,4 @@
-const FS = require("fs")
+const FS = require('fs')
 
 const ROOT = __dirname
 
@@ -9,7 +9,7 @@ function RES_error() {
         },
         body: {
             main: {
-                html: "<p>Something went wrong :(</p>"
+                html: '<p>Something went wrong :(</p>'
             }
         },
         request: {
@@ -20,10 +20,10 @@ function RES_error() {
 }
 
 function RES_readFile(path){
-    let file_content = FS.readFileSync(path, "utf8")
-    file_content = file_content.replace(/\"/g,  "'")
-    file_content = file_content.replace(/\n|\r/g,  "")
-    file_content = file_content.replace(/\s{2}/g,  "")
+    let file_content = FS.readFileSync(path, 'utf8')
+    file_content = file_content.replace(/\"/g,  '\'')
+    file_content = file_content.replace(/\n|\r/g,  '')
+    file_content = file_content.replace(/\s{2}/g,  '')
 
     return file_content
 }
@@ -33,17 +33,17 @@ function RES_Login() {
         const HTML = RES_readFile(`${ROOT}/login.html`)
 
         return {
-                    head: {
-                        title: 'DnD login'
-                    },
-                    body: {
+            head: {
+                title: 'DnD login'
+            },
+            body: {
                 main: {
                     html: HTML
                 }
             },
             request: {
                 status: 200,
-                pathname: "/login"
+                pathname: '/login'
             }
 
         }
@@ -67,7 +67,7 @@ function RES_Portal() {
             },
             request: {
                 status: 200,
-                pathname: "/portal"
+                pathname: '/portal'
             }
         }
     } catch (e) {
@@ -90,7 +90,7 @@ function RES_PlayerCreate() {
             },
             request: {
                 status: 200,
-                pathname: "/player.create"
+                pathname: '/player.create'
             }
         }
     } catch (e) {
@@ -112,7 +112,7 @@ function RES_GameCreate() {
             },
             request: {
                 status: 200,
-                pathname: "/game.create"
+                pathname: '/game.create'
             }
         }
     } catch (e) {

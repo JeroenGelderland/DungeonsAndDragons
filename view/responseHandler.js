@@ -1,4 +1,4 @@
-const FS = require('fs')
+import fs from 'fs'
 
 const ROOT = __dirname
 
@@ -20,7 +20,7 @@ function RES_error() {
 }
 
 function RES_readFile(path){
-    let file_content = FS.readFileSync(path, 'utf8')
+    let file_content = fs.readFileSync(path, 'utf8')
     file_content = file_content.replace(/\"/g,  '\'')
     file_content = file_content.replace(/\n|\r/g,  '')
     file_content = file_content.replace(/\s{2}/g,  '')

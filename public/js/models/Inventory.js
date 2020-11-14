@@ -1,4 +1,4 @@
-class Inventory {
+export default class Inventory {
 
     constructor() {
         this.Items = []
@@ -12,8 +12,4 @@ class Inventory {
 
         this.Rations = 0
     }
-}
-
-module.exports = {
-    Inventory
 }

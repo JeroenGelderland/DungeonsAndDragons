@@ -1,4 +1,4 @@
-class Player {
+export default class Player {
 
     constructor(data, user) {
 
@@ -34,8 +34,4 @@ class Player {
     ToJson(){
         return JSON.stringify(this)
     }
-}
-
-module.exports = {
-    Player
 }

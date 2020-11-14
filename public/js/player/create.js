@@ -1,4 +1,4 @@
-export default class PlayerCreatorPageLoader {
+export class PlayerCreatorPageLoader {
     constructor ({ races, classes }) {
         Object.assign(this, ...arguments)
     }

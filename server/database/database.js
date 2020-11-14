@@ -1,7 +1,7 @@
 import fs from 'fs'
 const DATABASE_FILE = './server/database/database.json'
 
-class Database {
+export default class Database {
 
     constructor() {
         this.storage = JSON.parse(fs.readFileSync(DATABASE_FILE))
@@ -63,7 +63,4 @@ class Database {
     getUserByName(username) {
         return this.storage.users.find(user => user.username == username)
     }
-}
-module.exports = {
-    Database
 }

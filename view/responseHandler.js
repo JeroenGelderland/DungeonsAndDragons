@@ -2,7 +2,7 @@ import fs from 'fs'
 
 const ROOT = './'
 
-export function RES_error() {
+export function RES_error () {
     return {
         head: {
             title: 'Error'
@@ -19,7 +19,7 @@ export function RES_error() {
     }
 }
 
-export function RES_readFile(path){
+export function RES_readFile (path) {
     let file_content = fs.readFileSync(path, 'utf8')
     file_content = file_content.replace(/\"/g,  '\'')
     file_content = file_content.replace(/\n|\r/g,  '')
@@ -28,7 +28,7 @@ export function RES_readFile(path){
     return file_content
 }
 
-export function RES_Login() {
+export function RES_Login () {
     try {
         const HTML = RES_readFile(`${ROOT}/login.html`)
 
@@ -52,7 +52,7 @@ export function RES_Login() {
     }
 }
 
-export function RES_Portal() {
+export function RES_Portal () {
     try {
         const HTML = RES_readFile(`${ROOT}/portal.html`)
 
@@ -75,7 +75,7 @@ export function RES_Portal() {
     }
 }
 
-export function RES_PlayerCreate() {
+export function RES_PlayerCreate () {
     try {
         const HTML = RES_readFile(`${ROOT}/player/create.html`)
 
@@ -98,7 +98,7 @@ export function RES_PlayerCreate() {
     }
 }
 
-export function RES_GameCreate() {
+export function RES_GameCreate () {
     try {
         const HTML = RES_readFile(`${ROOT}/game/create.html`)
 

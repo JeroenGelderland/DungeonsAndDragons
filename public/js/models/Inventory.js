@@ -1,6 +1,6 @@
 export default class Inventory {
 
-    constructor() {
+    constructor () {
         this.Items = []
         this.Purse = {
             CP: 0,

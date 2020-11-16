@@ -4,19 +4,17 @@ const PORTS = {
 }
 
 import dotenv           from 'dotenv'
-dotenv.config()
-
+import http             from 'http'
 import express          from 'express'
 import session          from 'express-session'
-import http             from 'http'
 import socketio         from 'socket.io'
 import multer           from 'multer'
 
-
-import Socket           from 'dgram'
 import Database         from './server/database/database.js'
 import * as res_handler from './view/responseHandler.js'
 import Player           from './public/js/models/Player.js'
+
+dotenv.config()
 
 const APP      = express()
 const SERVER   = http.createServer(APP)
@@ -102,7 +100,6 @@ SERVER.listen(PORTS.http, () => {
 
     console.log(`listening at http://localhost:${PORTS.http}`)
 })
-
 
 function Authenticate(req, res, next) {
     if (JSON.parse(ENV.DEVELOPER_MODE)) {

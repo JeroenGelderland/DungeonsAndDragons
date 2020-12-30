@@ -34,17 +34,17 @@ const VIEW_ROOT = './view/'
 
 APP.get('/', Authenticate, (req, res) => res.sendFile('index.html', { root: './' }))
 
-APP.get('/portal', Authenticate, (req, res) => {
-    if (req.xhr) res.json(res_handler.RES_Portal)
-    else res.sendFile('portal.html', { root: VIEW_ROOT })
-})
+const sender = (json, html) => (req, res) => {
+    if (req.xhr) res.json(json)
+    else res.sendFile(html, { root: VIEW_ROOT })
+}
 
-APP.get('/login', (req, res) => {
-    if (req.xhr) res.json(res_handler.RES_Login())
-    else res.sendFile('login.html', { root: VIEW_ROOT })
-})
+APP.get('/portal', Authenticate, sender(res_handler.RES_Portal, 'portal.html'))
+APP.get('/login',                sender(res_handler.RES_Login,  'login.html'))
+
 APP.post('/login', (req, res) => {
     const login_attempt = login(req.body, req)
+
     if (login_attempt.status) {
         res.status(200).redirect('/portal')
     } else {
@@ -113,23 +113,11 @@ function Authenticate(req, res, next) {
     }
 
     if (req.xhr) res.send('401')
-    else { res.redirect(ENV.LOGIN_PATH) }
-
+    else res.redirect('/login')
 }
 
 function login(login_attempt, req) {
     const user = DATABASE.getUserByName(login_attempt.username)
-
-    if (user !== null) {
-        if (user.password === login_attempt.password) {
-            req.session.user = user.username
-            return { status: true, message: 'success' }
-        }
-        return { status: false, message: 'incorrect password' }
-    }
-    return { status: false, message: 'user not found' }
-
-    // de consensus is dat het laatste blokje beter zo geschreven kan worden:
 
     if (user === null) return { status: false, message: 'user not found' }
     if (user.password !== login_attempt.password) return { status: false, message: 'incorrect password' }

@@ -8,3 +8,11 @@ export default class Game {
 
 
 }
+
+// class Time{
+
+//     constructor(30, 12){
+//         this.year = year
+//         this.hours = hours
+//     }
+// }

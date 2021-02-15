@@ -1,0 +1,14 @@
+{
+    "head": {
+        "title": "Player Mngmnt"
+    },
+    "body": {
+        "main": {
+            "html": "<p>Playersheit</p>"
+        }
+    },
+    "request": {
+        "status": 200,
+        "pathname": "/player"
+    }
+}

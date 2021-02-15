@@ -1,0 +1,14 @@
+{
+    "head": {
+        "title": "Game Mngmnt"
+    },
+    "body": {
+        "main": {
+            "html": "<p>Gamezz</p>"
+        }
+    },
+    "request": {
+        "status": 200,
+        "pathname": "/game"
+    }
+}

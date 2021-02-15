@@ -1,0 +1,14 @@
+{
+    "head": {
+        "title": "Home"
+    },
+    "body": {
+        "main": {
+            "html": "<p>Homepagina lel</p>"
+        }
+    },
+    "request": {
+        "status": 200,
+        "pathname": "/ /home"
+    }
+}

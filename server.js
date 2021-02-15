@@ -3,16 +3,16 @@ const PORTS = {
 	sockets: 3100
 }
 
-import dotenv           from 'dotenv'
-import http             from 'http'
-import express          from 'express'
-import session          from 'express-session'
-import socketio         from 'socket.io'
-import multer           from 'multer'
+import dotenv     from 'dotenv'
+import http       from 'http'
+import express    from 'express'
+import session    from 'express-session'
+import socketio   from 'socket.io'
+import multer     from 'multer'
 
-import Database         from './server/database/database.js'
-import * as res_handler from './view/responseHandler.js'
-import Player           from './public/js/models/Player.js'
+import Database   from './server/database/database.js'
+import controller from './view/controller.js'
+import Player     from './public/js/models/Player.js'
 
 dotenv.config()
 
@@ -30,66 +30,31 @@ APP.use(session({
     saveUninitialized: true
 }))
 const ENV = process.env
-const VIEW_ROOT = './view/'
 
-APP.get('/', Authenticate, (req, res) => res.sendFile('index.html', { root: './' }))
+APP.get( '/',        Authenticate, controller.home   .getter)
+APP.get( '/players', Authenticate, controller.players.getter)
+APP.get( '/games',   Authenticate, controller.games  .getter)
+APP.get( '/login',                 controller.login  .getter)
+APP.post('/login',                 controller.login  .poster, (req, res) => res.sendFile('portal.html', { root: './' }))
 
-const sender = (json, html) => (req, res) => {
-    if (req.xhr) res.json(json)
-    else res.sendFile(html, { root: VIEW_ROOT })
-}
-
-APP.get('/portal', Authenticate, sender(res_handler.RES_Portal, 'portal.html'))
-APP.get('/login',                sender(res_handler.RES_Login,  'login.html'))
-
-APP.post('/login', (req, res) => {
-    const login_attempt = login(req.body, req)
-
-    if (login_attempt.status) {
-        res.status(200).redirect('/portal')
-    } else {
-        res.status(401).redirect('/login')
-    }
-})
 APP.get('/logout', (req, res) => {
     delete req.session.user
-    if (req.xhr) res.json(res_handler.RES_Login())
+    if (req.xhr) res.json(controller.RES_Login())
     else {
         res.status(401).redirect('/login')
     }
 })
 
-APP.get('/create-player', Authenticate, (req, res) => {
-    if (req.xhr) {
-        res.json(res_handler.RES_PlayerCreate)
-    }
-    else {
-        res.sendFile('/player/create.html', { root: VIEW_ROOT })
-    }
-})
-APP.post('/create-player', Authenticate, UPLOAD.single('Appearance'), (req) => {
-    req.body.Appearance = req.file.filename
-    
-    DATABASE.AddPlayer(new Player(req.body))
-})
+// APP.get( '/current-user', Authenticate, (req, res) => res.json(req.session.user))
 
-APP.get('/create-game', Authenticate, (req, res) => res.json(res_handler.RES_GameCreate))
+// APP.post('/player/create', Authenticate, controller.player.poster) // todo: bedenk waar je heen gaat na succesvol aanmaken
+
+APP.get('/create-game', Authenticate, (req, res) => res.json(controller.RES_GameCreate))
 APP.post('/create-game', Authenticate, (req) => {
     console.log(req.body)
 })
 
-APP.get('/Game.dashboard', Authenticate, (req, res) => {
-    res.sendFile('/game/game.html', { root: VIEW_ROOT })
-})
-
 APP.get('/game/:game_name', Authenticate, (req, res) => res.json(DATABASE.FindGame(req.params.game_name)))
-
-APP.get('/games', Authenticate, (req, res) => {
-    res.json(DATABASE.GetData().games)
-})
-
-APP.get('/user', Authenticate, (req, res) => res.json(req.session.user))
-
 
 SERVER.listen(PORTS.http, () => {
     IO.on('connection', SOCKET => {
@@ -101,7 +66,7 @@ SERVER.listen(PORTS.http, () => {
     console.log(`listening at http://localhost:${PORTS.http}`)
 })
 
-function Authenticate(req, res, next) {
+function Authenticate (req, res, next) {
     if (JSON.parse(ENV.DEVELOPER_MODE)) {
         req.session.user = 'dev'
         return next()
@@ -114,14 +79,4 @@ function Authenticate(req, res, next) {
 
     if (req.xhr) res.send('401')
     else res.redirect('/login')
-}
-
-function login(login_attempt, req) {
-    const user = DATABASE.getUserByName(login_attempt.username)
-
-    if (user === null) return { status: false, message: 'user not found' }
-    if (user.password !== login_attempt.password) return { status: false, message: 'incorrect password' }
-
-    req.session.user = user.username
-    return { status: true, message: 'success' }
 }

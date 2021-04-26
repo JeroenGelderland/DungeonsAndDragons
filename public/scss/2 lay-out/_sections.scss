@@ -1,0 +1,13 @@
+section {
+  flex-grow: 1;
+  margin: 50px;
+  padding: 25px;
+  border-radius: gv(border-radius, 2);
+  background-color: #FFF;
+  border: 1px solid #E65;
+
+  &:not(.active),
+  &.active ~ .active {
+    display: none;
+  }
+}

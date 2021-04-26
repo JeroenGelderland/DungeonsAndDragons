@@ -1,6 +1,6 @@
-//// Fixed elements
+//// Fixed elements layer
   //
-  .fixed {
+  #fixed {
     position: fixed;
     width:  100%;
     height: 100vh;
@@ -19,29 +19,6 @@
     bottom: 100vh;
     right:  100vw;
     overflow: hidden !important;
-  }
-
-//// Visually hidden elements
-  // Both these classes hide elements from sighted users, while still being visible to screen readers
-  // Radio buttons and checkboxes have these exact styles applied to them as well
-  // The 'visible-on-focus' class only shows up when it is being focussed
-  //
-  .invisible,
-  html.js .invisible-with-js,
-  html.no-js .visible-with-js,
-  html:not(.js-focus-visible) .visible-on-focus:not(:focus),
-  html.js-focus-visible .visible-on-focus:not(.focus-visible) {
-    position: absolute;
-    top:    auto !important;
-    left:   auto !important;
-    right:  200vw;
-    bottom: auto !important;
-    width:  1px;
-    height: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
   }
 
 //// General queries

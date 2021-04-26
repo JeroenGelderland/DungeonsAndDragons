@@ -1,14 +1,5 @@
 .close {
-  &:not(.float) {
-    position: absolute;
-  }
-  &.float.right {
-    float:right
-  }
-  &.float.left {
-    float:left
-  }
-
+  position: absolute;
   width:  calc(10px + 2em);
   height: calc(10px + 2em);
   margin: calc(-5px - .6em);

@@ -21,7 +21,7 @@
   $black: hsl(211,30%,5%);
 
   $color-body: #222;
-  $text-blocks: 'h1, h2, h3, h4, h5, h6, p';
+  $text-blocks:          'h1, h2, h3, h4, h5, h6, p';
   $text-blocks-headings: 'h1, h2, h3, h4, h5, h6';
 
   :root {
@@ -40,6 +40,9 @@
 
     --cg: 24px;
     --rg: 1.5rem;
+
+    --font-headings: 'Volkhov';
+    --font-body: 'Inconsolata';
   }
 
 *, ::before, ::after {
@@ -54,25 +57,18 @@ body {
   font-family: sans-serif;
 }
 
-section {
-  position: fixed;
-  top:    0;
-  left:   0;
-  right:  0;
-  bottom: 0;
-
-  &:not(.active),
-  &.active ~ .active {
-    display: none;
-  }
-}
-
-
+//// Document
+  // Generic stuff about the document as a whole
+  // Mostly related to the way text is displayed
+  //
   @import '1 document/big bang';
-
   @import '1 document/universal';
-
   @import '1 document/global';
+
+//// Lay-out
+  // 
+  //
+  @import '2 lay-out/sections';
 
 //// Globals
   // Variables accessed with the gv() function need to be created after the last call

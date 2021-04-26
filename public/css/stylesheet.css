@@ -2,6 +2,8 @@
   --border-radius: 5px;
   --cg: 24px;
   --rg: 1.5rem;
+  --font-headings: 'Volkhov';
+  --font-body: 'Inconsolata';
 }
 
 @media (max-width: 375px) {
@@ -56,19 +58,6 @@
 body {
   margin: 0;
   font-family: sans-serif;
-}
-
-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-section:not(.active),
-section.active ~ .active {
-  display: none;
 }
 
 *, ::before, ::after {
@@ -232,7 +221,7 @@ summary {
   display: list-item;
 }
 
-.fixed {
+#fixed {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -241,7 +230,7 @@ summary {
   z-index: 999;
 }
 
-.fixed > * {
+#fixed > * {
   pointer-events: initial;
 }
 
@@ -250,24 +239,6 @@ summary {
   bottom: 100vh;
   right: 100vw;
   overflow: hidden !important;
-}
-
-.invisible,
-html.js .invisible-with-js,
-html.no-js .visible-with-js,
-html:not(.js-focus-visible) .visible-on-focus:not(:focus),
-html.js-focus-visible .visible-on-focus:not(.focus-visible) {
-  position: absolute;
-  top: auto !important;
-  left: auto !important;
-  right: 200vw;
-  bottom: auto !important;
-  width: 1px;
-  height: 1px;
-  white-space: nowrap;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
 }
 
 @media (max-width: 768px) {
@@ -330,10 +301,13 @@ html.js-focus-visible .visible-on-focus:not(.focus-visible) {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.5;
   color: #222;
+  background-color: #E65;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -482,4 +456,22 @@ body > main ol:not(.noStyles) > li:empty::after {
   body > main ol:not(.noStyles) > li {
     display: contents;
   }
+}
+
+section {
+  flex-grow: 1;
+  margin: 50px;
+  padding: 25px;
+  border-radius: var(--border-radius-2);
+  background-color: #FFF;
+  border: 1px solid #E65;
+}
+
+section:not(.active),
+section.active ~ .active {
+  display: none;
+}
+
+:root {
+  --border-radius-2: calc(var(--border-radius) * 2);
 }

@@ -9,7 +9,8 @@
 
         <link rel="preconnect"                 href="https://fonts.gstatic.com" />
         <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" />
+
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Volkhov:ital,wght@1,400;1,700&display=swap" rel="stylesheet" />
 
         <meta name="theme-color"                content="#EE6655" />
         <meta name="msapplication-TileColor"    content="#EE6655" />
@@ -18,7 +19,7 @@
                                                   <title>DnD</title>
     </head>
 	<body>
-		<section id="combat" class="active">
+		<div id="fixed">
 			<div class="modal" id="modal-add-status-effect">
 				<div class="close"></div>
 				<div class="body">
@@ -52,6 +53,12 @@
 					<div>Damage</div>
 				</div>
 			</div>
+		</div>
+		<section id="lobby">
+			<div class="game active"></div>
+			<div class="game active"></div>
+		</section>
+		<section id="combat" class="active">
 			<div id="status-effects">
 				<div class="global"></div>
 				<div class="player"></div>

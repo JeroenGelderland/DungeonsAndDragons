@@ -2,10 +2,13 @@
   // Mainly text-related
   //
   body {
+    display: flex;
+    flex-direction: column;
     font-family: var(--font-body);
     font-weight: 400;
     line-height: 1.5;
     color: $color-body;
+    background-color: #E65;
   }
 
   #{$text-blocks-headings} {

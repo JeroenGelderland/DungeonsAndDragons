@@ -1,12 +1,3 @@
-//// Available variables
-  //
-  // #{$not-text-block-elements}
-  // #{$text-block-elements}
-  // #{$headings}
-  // #{$body-headings}
-  // #{$all-headings}
-  //
-
 //// Default styles
   // Mainly text-related
   //
@@ -17,7 +8,7 @@
     color: $color-body;
   }
 
-  #{$headings} {
+  #{$text-blocks-headings} {
     font-family: var(--font-heading);
     font-weight: 700;
     line-height: 1.125;
@@ -31,19 +22,13 @@
     }
   }
 
-  #{$text-block-elements} {
-    margin-bottom: 0;
-
+  #{$text-blocks} {
     &:first-child {
       margin-top: 0;
     }
 
-    &:not(:first-child) {
-      margin-top: gv(rg);
-    }
-
-    &:empty { // If you're going to use a block-level element and plan to leave it empty, use a div instead.
-      display: none !important;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
@@ -52,8 +37,6 @@
        375px: 32px,
       1440px: 48px
     ), 'font-size');
-    padding-bottom: .25em;
-    margin: calc(-1.1em / 6) 0;
   }
 
   h2 {
@@ -135,92 +118,4 @@
         }
       }
     }
-  }
-
-//// Logo styling
-  //
-  .logo {
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-
-  .logo svg use {
-    fill: hsl(38, 100%, 56%);
-  }
-
-  .logo span {
-    color: hsl(38, 100%, 56%);
-  }
-
-  .logo svg {
-    width: 48px;
-  }
-
-//// Backgrounds
-  .bg-image {
-    background-size: 0;
-  }
-  .bg-image::before {
-    background-size: cover;
-    background-image: inherit;
-  }
-
-  #{$bg} {
-    padding: gv(rg) gv(cg);
-    border-radius: gv(border-radius);
-
-    &::before {
-      content: '';
-      display: block;
-      position: absolute;
-      max-width:  100%;
-      max-height: 100%;
-      margin: auto;
-      z-index: -1;
-      border-radius: inherit;
-
-      body > main > div > & {
-        max-width: 2048px; // 2560 zou ook kunnen
-      }
-    }
-
-    @at-root #{selector-unify('table',       &)} { &::before {
-      top:    calc(#{gv(rg, -1)} + #{gv(border-radius, -1)});
-      left:   calc(#{gv(cg, -1)} + #{gv(border-radius, -1)});
-      right:  calc(#{gv(cg, -1)} + #{gv(border-radius, -1)});
-      bottom: calc(#{gv(rg, -1)} + #{gv(border-radius, -1)});
-    }}
-
-    @at-root #{selector-unify(':not(table)', &)} { &::before {
-      top:    gv(border-radius, -1);
-      left:   gv(border-radius, -1);
-      right:  gv(border-radius, -1);
-      bottom: gv(border-radius, -1);
-    }}
-  }
-
-  .bg-main-light { &::before { background-color: hsl( 210,  36%, 96%) }
-    #{$headings}, th, .icon { color: hsl(210, 39%, 23%) }
-    hr                      { color: hsl(210, 23%, 60%) }
-  }
-  .bg-orange     { &::before { background-color: hsl(  39, 100%, 86%) }
-    #{$headings}, th, .icon { color: hsl(38, 100%, 16%) }
-    hr                      { color: hsl(38, 100%, 56%) }
-  }
-  .bg-blue       { &::before { background-color: hsl( 200,  92%, 95%) }
-    #{$headings}, th, .icon { color: hsl(200, 92%, 22%) }
-    hr                      { color: hsl(200, 92%, 63%) }
-  }
-  .bg-overlay    { &::before { background-color: hsla(210,  34%, 30%, .25) }
-    color: #FFF;
-  }
-  .bg-image      {
-    color: #FFF;
-  }
-
-//// Others
-  //
-  .flex-nowrap {
-    display: flex;
-    align-items: center;
   }

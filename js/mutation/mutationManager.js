@@ -1,10 +1,10 @@
-import Database from '../database.js'
+import BackendDatabase from '../database/backendDatabase.js'
 
 export default class MutationManager{
 
     constructor() {
 
-        this.database = new Database()
+        this.database = new BackendDatabase()
         this.version = new Date()
         this.mutations = []
     }
@@ -14,10 +14,10 @@ export default class MutationManager{
 
             this.listenSocketConnection(socket)
             this.listenForMutations(socket)
+            this.listenForSyncDataRequest(socket)
 
         })
     }
-
 
     listenSocketConnection(socket){
         let message = {version : this.version, mutations : this.mutations}
@@ -28,7 +28,7 @@ export default class MutationManager{
         
         socket.on('mutation', data => {
             let mutation = new Mutation(data.id, data.entityId, data.field, data.value)
-            
+            this.database.Mutate(mutation)
             this.mutations.push(mutation)
             socket.sockets.emit('mutation', mutation.toJson())
         })

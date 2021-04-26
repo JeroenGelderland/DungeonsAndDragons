@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "data" : "node ./js/database.js",
     "dev": "nodemon index.js",
     "start": "node index.js"
   },

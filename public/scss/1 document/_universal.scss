@@ -33,6 +33,7 @@
   html.js-focus-visible .visible-on-focus:not(.focus-visible) {
     position: absolute;
     top:    auto !important;
+    left:   auto !important;
     right:  200vw;
     bottom: auto !important;
     width:  1px;

@@ -1,19 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>DnD</title>
-	</head>
-	<body>
-		Javascript ofzo?
-		<script src="http://localhost:3000/socket.io/socket.io.js"></script>
-		<script>
-			const socket = io("ws://localhost:3000");
-			socket.on('init', text => {
-				console.log(text)
-			})
-		</script>
-	</body>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
+		<script defer type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+        <script defer type="text/javascript" src="/js/functions.js"></script>
+
+        <link rel="preconnect"                 href="https://fonts.gstatic.com" />
+        <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" />
+
+        <meta name="theme-color"                content="#EE6655" />
+        <meta name="msapplication-TileColor"    content="#EE6655" />
+        <meta name="apple-mobile-web-app-title" content="DnD" />
+        <meta name="application-name"           content="DnD" />
+                                                  <title>DnD</title>
+    </head>
+	<body>
+		<section id="combat" class="active">
+			<div class="modal" id="modal-add-status-effect">
+				<div class="close"></div>
+				<div class="body">
+					<div class="options">
+						<div>Global</div>
+						<div>Player</div>
+						<div>NPC</div>
+					</div>
+					<div class="options">
+						Ja whatever
+					</div>
+				</div>
+			</div>
+			<div class="modal" id="modal-resistance">
+				<div class="close"></div>
+				<div class="body">
+					<div class="options">
+						<div>Bludgeoning</div>
+						<div>Slashing</div>
+						<div>Piercing</div>
+						<div>Bludgeoning</div>
+						<div>Slashing</div>
+						<div>Piercing</div>
+						<div>Bludgeoning</div>
+						<div>Slashing</div>
+						<div>Piercing</div>
+						<div>Bludgeoning</div>
+						<div>Slashing</div>
+						<div>Piercing</div>
+					</div>
+					<div>Damage</div>
+				</div>
+			</div>
+			<div id="status-effects">
+				<div class="global"></div>
+				<div class="player"></div>
+				<div class="npc"></div>
+				<div id="add-effect"></div>
+			</div>
+			<div id="carousel">
+				<div id="slides">
+					<div>
+						<header>
+							<img src="/img/default.png" alt="" />
+							<div class="name">Spelernaam</div>
+						</header>
+						<div class="status-effects">
+							<div>FIRE FIRE FIRE</div>
+						</div>
+						<div class="body">
+							Overige informatie
+						</div>
+					</div>
+					<div>
+						<header>
+							<img src="/img/default.png" alt="" />
+							<div class="name">Spelernaam</div>
+						</header>
+						<div class="body">
+							Overige informatie
+						</div>
+					</div>
+				</div>
+				<div id="navigation">
+					<div style="--avatar:'/img/default.png'">
+						<div class="damage-physical"></div>
+						<div class="damage-magical"></div>
+					</div>
+					<div style="--avatar:'/img/default.png'">
+						<div class="damage-physical"></div>
+						<div class="damage-magical"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
 </html>

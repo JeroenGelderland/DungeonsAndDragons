@@ -1,6 +1,10 @@
 @startuml
 
-class "GameEntity"
+class "GameEntity"{
+    + state
+}
+note left: STATES\n - playable\n - npc\n - lifeless
+
 class "Character"
 class "Item"
 class "User"

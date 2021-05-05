@@ -1,5 +1,5 @@
 @startuml
-
+skinparam monochrome reverse
 class "GameEntity"{
     + state
 }
@@ -9,7 +9,6 @@ class "Character"
 class "Item"
 class "User"
 class "Game"
-
 
 User --* GameEntity : plays
 GameEntity -* Game : Participates

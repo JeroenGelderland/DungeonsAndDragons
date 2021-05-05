@@ -37,7 +37,7 @@ export default class MutationManager{
     listenForSyncDataRequest(socket){
         
         socket.on('syncData', () => {
-            socket.emit('syncData', this.database.data)
+            socket.emit('syncData', this.database._data)
         })
     }
 }

@@ -8,19 +8,17 @@ export default class BackendDatabase extends Database{
     constructor(src=DEFAULT_SOURCE){
         super()
         this.src = src
-        this.data = this.load()
+        this.load()
     }
 
     load(){
-        return JSON.parse(fs.readFileSync(this.src, 'utf8'))
+        this._data = JSON.parse(fs.readFileSync(this.src, 'utf8'))
+        super.load()
     }
 
     save(){
-        fs.writeFile(this.src, JSON.stringify(this.data), (err) => {
+        fs.writeFile(this.src, JSON.stringify(this._data), (err) => {
             if (err) throw err
         })
     }
 }
-
-
-

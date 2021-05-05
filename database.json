@@ -1,1 +1,126 @@
-{"games":[{"id":1},{"id":2}],"characters":[{"id":1337}],"users":[{"id":420,"test":555}],"items":[{"id":3234},{"id":2279}]}
+{
+    "games": [
+        {
+            "id": 1,
+            "time": {
+                "start": 100.375, 
+                "current": 102.5, 
+                "definitions": [
+                    {
+                        "unit": "minute",
+                        "ratio": {
+                            "this": 1,
+                            "base": "second",
+                            "contains": 60
+                        }
+                    }, {
+                        "unit": "hour",
+                        "ratio": {
+                            "this": 1,
+                            "base": "minute",
+                            "contains": 60
+                        }
+                    }, {
+                        "unit": "day",
+                        "ratio": {
+                            "this": 1,
+                            "base": "hour",
+                            "contains": 24
+                        }
+                    }, {
+                        "unit": "week",
+                        "type": "abstraction",
+                        "ratio": {
+                            "this": 1,
+                            "base": "day",
+                            "contains": [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
+                        },
+                        "offset": 1 
+                    }, {
+                        "unit": "month",
+                        "ratio": {
+                            "this": 1,
+                            "base": "day",
+                            "contains": 30
+                        }
+                    }, {
+                        "unit": "year",
+                        "ratio": {
+                            "this": 1,
+                            "base": "month",
+                            "contains": [ "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" ]
+                        }
+                    }, {
+                        "unit": "season",
+                        "type": "abstraction",
+                        "ratio": { 
+                            "this": [ "summer", "autumn", "winter", "spring" ],
+                            "base": "year",
+                            "contains": 1
+                        },
+                        "offset": 0.5 
+                    }, {
+                        "unit": "season",
+                        "type": "abstraction",
+                        "ratio": { 
+                            "this": [ "summer", "autumn", "winter", "spring" ],
+                            "base": "year",
+                            "contains": 41
+                        },
+                        "offset": 2 
+                    }, {
+                        "unit": "decade",
+                        "type": "abstraction",
+                        "ratio": {
+                            "this": 1,
+                            "base": "year",
+                            "contains": 10
+                        }
+                    }, {
+                        "unit": "century",
+                        "type": "abstraction",
+                        "ratio": {
+                            "this": 1,
+                            "base": "year",
+                            "contains": 100
+                        }
+                    }, {
+                        "unit": "millenium",
+                        "type": "abstraction",
+                        "ratio": {
+                            "this": 1,
+                            "base": "year",
+                            "contains": 1000
+                        }
+                    }
+                ],
+                "controls": [ 
+                    {
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2
+        }
+    ],
+    "characters": [
+        {
+            "id": 1337
+        }
+    ],
+    "users": [
+        {
+            "id": 420,
+            "test": 555
+        }
+    ],
+    "items": [
+        {
+            "id": 3234
+        },
+        {
+            "id": 2279
+        }
+    ]
+}
